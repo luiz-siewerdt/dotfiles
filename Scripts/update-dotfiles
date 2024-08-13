@@ -3,14 +3,18 @@
 nvim_config_path="/home/shampoo-shrek/.config/nvim"
 
 shampoo_zsh_theme="/home/shampoo-shrek/.oh-my-zsh/themes/shampoo-shrek.zsh-theme"
+
 zsharc_file="/home/shampoo-shrek/.zshrc"
 
 scripts_path="/home/shampoo-shrek/Documents/DevOffice/Scripts"
+
+alacritty_path="/home/shampoo-shrek/.config/alacritty/alacritty.toml"
 
 dotfiles_path="/home/shampoo-shrek/Documents/dotfiles/"
 
 mkdir -p "$dotfiles_path/nvim"
 mkdir -p "$dotfiles_path/wezTerm"
+mkdir -p "$dotfiles_path/alacritty"
 mkdir -p "$dotfiles_path/shell"
 mkdir -p "$dotfiles_path/scripts"
 
@@ -19,5 +23,7 @@ cp -r "$nvim_config_path"/* "$dotfiles_path/nvim/lazyvim"
 cp "$shampoo_zsh_theme" "$dotfiles_path/shell"
 
 cp "$zsharc_file" "$dotfiles_path/shell"
+
+cp "$alacritty_path" "$dotfiles_path/alacritty"
 
 cp -r "$scripts_path" "$dotfiles_path"

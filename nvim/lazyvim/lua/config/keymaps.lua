@@ -39,17 +39,19 @@ vim.keymap.set("v", "<Tab>", "=", opts)
 map("n", "<M-Enter>", toggle_full_screen, opts)
 map("n", "<M-t>", toggle_neovide_transparence, opts)
 map("n", "<leader><tab>l", "<cmd>tablast<cr>", { desc = "Last Tab" })
+map("n", "<leader>ja", "", { desc = "Accessors" })
+map("n", "<leader>j", "", { desc = "Java" })
 
 -- DISABLE KEYMAPS
 
 -- window
-del("n", "<leader>ww")
-del("n", "<leader>wd")
-del("n", "<leader>w-")
-del("n", "<leader>w|")
-del("n", "<leader>-")
-del("n", "<leader>|")
-del("n", "<leader>wm")
+-- del("n", "<leader>ww")
+-- del("n", "<leader>wd")
+-- del("n", "<leader>w-")
+-- del("n", "<leader>w|")
+-- del("n", "<leader>-")
+-- del("n", "<leader>|")
+-- del("n", "<leader>wm")
 
 -- tabs
 del("n", "<leader><tab>o")

@@ -1,12 +1,16 @@
-neofetch;
+neofetch
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
+
 export DEV=$HOME/Documents/DevOffice
-export EDITOR='/opt/nvim-linux64/bin/nvim'
-export VISUAL='/opt/nvim-linux64/bin/nvim'
+export DOTFILES=$HOME/Documents/dotfiles
+
+export SUDO_EDITOR=nvim
+export EDITOR=nvim
+export VISUAL=nvim
 
 export BROWSER="brave"
 
@@ -108,8 +112,10 @@ export PATH="$HOME/":$PATH
 export PATH="$HOME/.spicetify":$PATH
 export PATH="$HOME/.local/bin":$PATH
 export PATH="$HOME/.local/kitty.app/bin/":$PATH
-
+export PATH="$HOME/.cargo/bin":$PATH
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+export PATH=$PATH:/home/shampoo-shrek/.spicetify

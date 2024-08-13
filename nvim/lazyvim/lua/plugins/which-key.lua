@@ -3,7 +3,7 @@ return {
   event = "VeryLazy",
   opts = {
     plugins = { spelling = true },
-    defaults = {
+    spec = {
       ["<leader>c"] = {},
 
       -- nvim jdts, nvim java

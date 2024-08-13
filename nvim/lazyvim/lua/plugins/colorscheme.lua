@@ -1,4 +1,4 @@
-local bg_color = "#080810"
+local bg_color = "NONE"
 
 return {
   "folke/tokyonight.nvim",
@@ -17,6 +17,8 @@ return {
         blend = 0,
       }
       h1.WhichKeyFloat = { bg = bg_color, fg = "#7dcfff" }
+      h1.WhichKeyNormal = { bg = bg_color, fg = "#7dcfff" }
+      h1.WhichKey = { bg = bg_color, fg = "#7dcfff" }
       h1.TelescopeNormal = { bg = bg_color, fg = "#7dcfff" }
       h1.TelescopeBorder = { bg = bg_color, fg = "#7dcfff" }
       h1.TelescopePromptBorder = { bg = bg_color, fg = "#7dcfff" }
@@ -24,8 +26,8 @@ return {
       h1.TelescopeResultsComment = { bg = bg_color }
     end,
     on_colors = function(colors)
-      -- colors.bg = bg_color
-      colors.bg_dark = bg_color
+      colors.bg = "NONE"
+      colors.bg_dark = "NONE"
       colors.bg_statusline = ""
     end,
   },
