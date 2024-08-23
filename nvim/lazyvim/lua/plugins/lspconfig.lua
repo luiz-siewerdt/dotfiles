@@ -1,7 +1,9 @@
 return {
   "neovim/nvim-lspconfig",
   opts = {
+
     servers = {
+
       jdtls = {
         keys = {
           -- nvim jdtls --
