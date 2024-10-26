@@ -9,7 +9,7 @@ bindings = [
 title = "Terminal"
 dynamic_title = false
 
-opacity = 0.8
+opacity = 0.94
 blur = true
 
 dimensions = { columns = 80, lines = 24 }

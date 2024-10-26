@@ -1,6 +1,13 @@
 return {
   {
     "rcasia/neotest-java",
+    ft = "java",
+    dependencies = {
+      "mfussenegger/nvim-jdtls",
+      "mfussenegger/nvim-dap", -- for the debugger
+      "rcarriga/nvim-dap-ui", -- recommended
+      "theHamsta/nvim-dap-virtual-text", -- recommended
+    },
     init = function()
       -- override the default keymaps.
       -- needed until neotest-java is integrated in LazyVim
@@ -49,7 +56,9 @@ return {
     },
     opts = {
       adapters = {
-        ["neotest-java"] = {},
+        ["neotest-java"] = {
+          -- config here
+        },
       },
     },
   },

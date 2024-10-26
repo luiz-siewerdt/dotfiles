@@ -4,5 +4,4 @@ return {
   { "CRAG666/code_runner.nvim" },
   { "styled-components/vim-styled-components" },
   { "mg979/vim-visual-multi" },
-  { "rose-pine/neovim", name = "rose-pine" },
 }
