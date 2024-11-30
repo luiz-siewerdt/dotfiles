@@ -1,0 +1,33 @@
+#!/bin/bash
+
+config_folders=("godot" "ncspot" "wallust" "neofetch" "yazi" "mako" "rofi" "hypr" "spicetify" "waybar" "swaync" "alacritty" "qt5ct" "qt6ct")
+
+config_folder="$HOME/.config"
+
+nvim_config_path="/home/shampoo-shrek/.config/nvim/lua"
+
+shampoo_zsh_theme="/home/shampoo-shrek/.oh-my-zsh/themes/shampoo-shrek.zsh-theme"
+zsharc_file="/home/shampoo-shrek/.zshrc"
+
+scripts_path="/home/shampoo-shrek/Documents/DevOffice/scripts"
+
+dotfiles_path="$HOME/Documents/dotfiles"
+
+mkdir -p "$dotfiles_path/.config/nvim/"
+mkdir -p "$dotfiles_path/scripts"
+
+for folder in "${config_folders[@]}"; do
+	mkdir -p "$dotfiles_path/.config/$folder/"
+done
+
+cp -r "$nvim_config_path" "$dotfiles_path/.config/nvim"
+
+cp "$shampoo_zsh_theme" "$dotfiles_path/shell"
+
+cp "$zsharc_file" "$dotfiles_path/shell"
+
+cp -r "$scripts_path" "$dotfiles_path"
+
+for folder in "${config_folders[@]}"; do
+	cp -r "$config_folder/$folder" "$dotfiles_path/.config"
+done

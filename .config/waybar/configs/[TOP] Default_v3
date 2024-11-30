@@ -1,0 +1,31 @@
+/* ---- 💫 https://github.com/JaKooLit 💫 ---- */
+// ### DEFAULT v3  - Top ### //
+{
+  "include": "~/.config/waybar/modules",
+  "layer": "top",
+  "output": "VGA-1",
+  //"mode": "dock",
+  "exclusive": true,
+  "passthrough": false,
+  "position": "top",
+  "spacing": 3,
+  "fixed-center": true,
+  "ipc": true,
+  "margin-top": 3,
+  "margin-left": 8,
+  "margin-right": 8,
+  "modules-left": [
+    "custom/power",
+    "hyprland/workspaces#roman",
+  ],
+  "modules-center": [
+    "clock",
+  ],
+  "modules-right": [
+    "tray",
+    // "mpris",
+    "custom/separator#line",
+    "custom/player",
+    "group/audio",
+  ],
+}

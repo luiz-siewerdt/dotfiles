@@ -1,0 +1,13 @@
+/* ---- 💫 https://github.com/JaKooLit 💫 ---- */
+/* Main Config 1080p */
+
+@import "~/.config/rofi/master-config.rasi" 
+
+/* ---- Configuration ---- */
+configuration {
+	font: "Liberation Sans Nerd Font 12";
+}
+
+element-text {
+    font:	"Liberation Sans Nerd Font 14";
+}
