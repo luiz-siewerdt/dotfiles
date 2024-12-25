@@ -169,7 +169,7 @@ statusbar_progress = "#7aa2f7"
 statusbar_bg = ""
 
 cmdline = "#a9b1d6"
-cmdline_bg = ""
+cmdline_bg = "#000000"
 
 search_match = "#f7768e"
 

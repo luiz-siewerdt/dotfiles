@@ -24,14 +24,12 @@ require("lazy").setup({
     -- Langs
     { import = "lazyvim.plugins.extras.lang.rust" },
     { import = "lazyvim.plugins.extras.lang.json" },
-    { import = "lazyvim.plugins.extras.lang.java" },
+    -- { import = "lazyvim.plugins.extras.lang.java" },
     { import = "lazyvim.plugins.extras.lang.cmake" },
     { import = "lazyvim.plugins.extras.lang.docker" },
     { import = "lazyvim.plugins.extras.lang.clangd" },
     { import = "lazyvim.plugins.extras.lang.python" },
     { import = "lazyvim.plugins.extras.lang.typescript" },
-    -- { import = "lazyvim.plugins.extras.lang.php" },
-    -- { import = "lazyvim.plugins.extras.lang.omnisharp" },
 
     -- Tests
     { import = "lazyvim.plugins.extras.test.core" },
@@ -39,6 +37,12 @@ require("lazy").setup({
     -- Utils
     { import = "lazyvim.plugins.extras.util.dot" },
     { import = "lazyvim.plugins.extras.util.mini-hipatterns" },
+
+    -- Coding
+    { import = "lazyvim.plugins.extras.coding.nvim-cmp" },
+
+    -- DAP
+    { import = "lazyvim.plugins.extras.dap.core" },
 
     { import = "plugins" },
   },

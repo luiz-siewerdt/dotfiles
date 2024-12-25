@@ -53,11 +53,15 @@ return {
       "nvim-lua/plenary.nvim",
       "antoinemadec/FixCursorHold.nvim",
       "nvim-treesitter/nvim-treesitter",
+      "Issafalcon/neotest-dotnet",
     },
     opts = {
       adapters = {
         ["neotest-java"] = {
           -- config here
+        },
+        ["neotest-dotnet"] = {
+          -- Here we can set options for neotest-dotnet
         },
       },
     },

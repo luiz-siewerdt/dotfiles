@@ -4,6 +4,7 @@ export DEV=$HOME/Documents/DevOffice
 export CONFIG=$HOME/.config
 export DOTFILES=$HOME/Documents/dotfiles
 export DOTNET_ROOT=$HOME/.dotnet
+export TERM=alacritty
 
 export SUDO_EDITOR=nvim
 export EDITOR=nvim

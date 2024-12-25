@@ -48,7 +48,6 @@ M.setup_jdtls = function()
       },
     },
   }
-
   -- Find the extra bundles that should be passed on the jdtls command-line
   -- if nvim-dap is enabled with java debug/test.
   local bundles = {} ---@type string[]
