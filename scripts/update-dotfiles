@@ -5,6 +5,8 @@ config_folders=("godot" "ncspot" "wallust" "neofetch" "yazi" "mako" "rofi" "hypr
 config_folder="$HOME/.config"
 
 shampoo_zsh_theme="$HOME/.oh-my-zsh/themes/shampoo-shrek.zsh-theme"
+vim_src="$HOME/.vimrc"
+tmux_file="$HOME/.tmux.conf"
 zsharc_file="$HOME/.zshrc"
 
 scripts_path="$HOME/Documents/DevOffice/scripts"
@@ -20,6 +22,10 @@ done
 cp "$shampoo_zsh_theme" "$dotfiles_path/shell"
 
 cp "$zsharc_file" "$dotfiles_path/shell"
+
+cp "$vim_src" "$dotfiles_path/"
+
+cp "$tmux_file" "$dotfiles_path/"
 
 cp -r "$scripts_path" "$dotfiles_path"
 
