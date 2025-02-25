@@ -69,3 +69,9 @@ map.set("n", "<leader>b", "", WithDesc(opts, "Buffers"))
 map.set("n", "<leader>bd", ":Bdelete<CR>", WithDesc(opts, "Delete Current Buffer"))
 map.set("n", "<leader>ba", delete_all_buffers, WithDesc(opts, "Delete All Buffers"))
 map.set("n", "<leader>bo", ":BufferLineCloseOthers<CR>", WithDesc(opts, "Delete Other Buffers"))
+
+-- Lua Snippets --
+map.set({ "i" }, "<C-k>", "<cmd>lua require'luasnip'.expand_or_jump()<CR>", opts)
+map.set({ "i" }, "<C-h>", "<cmd>lua require'luasnip'.expand()<CR>", opts)
+map.set({ "i" }, "<C-l>", "<cmd>lua require'luasnip'.jump(1)<CR>", opts)
+map.set({ "i" }, "<C-j>", "<cmd>lua require'luasnip'.jump(-1)<CR>", opts)

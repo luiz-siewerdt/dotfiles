@@ -17,7 +17,6 @@ let g:tokyonight_enable_italic = 1
 
 colorscheme sorbet
 
-
 set backspace=indent,eol,start
 set expandtab
 set shiftround

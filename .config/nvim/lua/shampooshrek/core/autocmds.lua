@@ -140,8 +140,16 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
   end,
 })
 
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  pattern = { "jsx", "tsx" },
+  callback = function()
+    print("cu")
+    require("vim-react-snippets").lazy_load()
+  end,
+})
+
 vim.diagnostic.config({
-  virtual_text = false, -- Disable inline text (optional)
+  virtual_text = true, -- Disable inline text (optional)
   signs = true, -- Enable signs in the gutter
   underline = true, -- Enable underlines for diagnostics
 })
