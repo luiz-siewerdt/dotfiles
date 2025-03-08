@@ -1,3 +1,5 @@
+fastfetch
+
 export ZSH=~/.oh-my-zsh
 
 export DEV=$HOME/Documents/DevOffice
@@ -13,7 +15,7 @@ export VISUAL=nvim
 
 export BROWSER="brave"
 
-ZSH_THEME="shampoo-shrek"
+ZSH_THEME="avit"
 
 plugins=(
   # tmux

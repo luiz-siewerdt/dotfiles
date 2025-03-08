@@ -11,17 +11,25 @@ return {
           package_installed = "uga",
           package_pending = "uba",
           package_uninstalled = "uta",
-        }
-      }
+        },
+      },
     })
 
     mason_lspconfig.setup({
       ensure_installed = {
-        "csharp_ls",
-        "clangd"
+        "clangd",
+        "html",
+        "pylsp",
+        "bashls",
+        "css_variables",
+        "cssls",
+        "tailwindcss",
+        "eslint",
+        "ts_ls",
+        "clangd",
+        "jsonls",
       },
       automatic_installation = true,
     })
   end,
 }
-

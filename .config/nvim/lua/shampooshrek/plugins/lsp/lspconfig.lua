@@ -7,12 +7,15 @@ return {
   opts = {
     servers = {
       html = {},
+      pyright = {},
+      pylsp = {},
       bashls = {},
       css_variables = {},
       cssls = {},
       tailwindcss = {},
       eslint = {},
       ts_ls = {},
+      jsonls = {},
       clangd = {},
       lua_ls = {
         settings = {
