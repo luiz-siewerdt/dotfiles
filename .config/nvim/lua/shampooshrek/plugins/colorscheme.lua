@@ -8,7 +8,7 @@ return {
   {
     "folke/tokyonight.nvim",
     opts = {
-      transparent = true,
+      transparent = false,
       styles = { -- Handles the styles of general hi groups (see `:h highlight-args`):
         -- comments = { "italic" }, -- Change the style of comments
         -- conditionals = { "italic" },
@@ -35,7 +35,7 @@ return {
     name = "catppuccin",
     opts = {
       flavour = "mocha",
-      transparent_background = true,
+      transparent_background = false,
       styles = { -- Handles the styles of general hi groups (see `:h highlight-args`):
         comments = { "italic" }, -- Change the style of comments
         conditionals = { "italic" },
@@ -69,4 +69,6 @@ return {
       },
     },
   },
+  { "cocopon/iceberg.vim" },
+  -- { "oahlen/iceberg.nvim" },
 }
