@@ -1,5 +1,5 @@
+cd ~
 fastfetch
-
 export ZSH=~/.oh-my-zsh
 
 export DEV=$HOME/Documents/DevOffice
@@ -7,6 +7,7 @@ export CONFIG=$HOME/.config
 export DOTFILES=$HOME/Documents/dotfiles
 export DOTNET_ROOT=$HOME/.dotnet
 export TERM=alacritty
+export WINDOWS=/mnt/c/Users/l.siewerdt/
 
 export SUDO_EDITOR=nvim
 export EDITOR=nvim

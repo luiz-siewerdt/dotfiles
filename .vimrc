@@ -5,7 +5,9 @@ let s:using_snippets = 0
 call plug#begin('~/.vim/plugged')
 
 Plug 'ghifarit53/tokyonight-vim'
-
+Plug 'cocopon/iceberg.vim'
+Plug 'jiangmiao/auto-pairs'
+Plug 'gkeep/iceberg-dark'
 
 call plug#end()
 " }}}
@@ -15,7 +17,6 @@ set termguicolors
 let g:tokyonight_style = 'night' " available: night, storm
 let g:tokyonight_enable_italic = 1
 
-colorscheme sorbet
 
 set backspace=indent,eol,start
 set expandtab
@@ -61,3 +62,29 @@ set incsearch
 
 set hlsearch
 
+let g:lightline = { 'colorscheme': 'icebergDark' }
+
+colorscheme sorbet
+colorscheme iceberg
+
+
+let &t_SI = "\e[6 q"
+let &t_EI = "\e[2 q"
+
+" reset the cursor on start (for older versions of vim, usually not required)
+augroup myCmds
+au!
+autocmd VimEnter * silent !echo -ne "\e[2 q"
+augroup END
+
+
+let mapleader = " "
+
+map <C-s> :w!<CR>
+
+map <C-h>  <C-w>h
+map <C-l>  <C-w>l
+map <C-j>  <C-w>j
+map <C-k>  <C-w>k
+
+map <leader>e :Explore<CR>
