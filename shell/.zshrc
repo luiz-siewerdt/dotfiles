@@ -13,6 +13,11 @@ export SUDO_EDITOR=nvim
 export EDITOR=nvim
 export VISUAL=nvim
 
+export QT_QPA_PLATFORM=wayland
+export QT_QPA_PLATFORMTHEME=qt5ct
+export QT_WAYLAND_SHELL_INTEGRATION=layzer-shell
+
+
 
 export BROWSER="brave"
 
@@ -38,3 +43,6 @@ export PATH="$HOME/.cargo/bin":$PATH
 export PATH="/usr/local/bin":$PATH
 export PATH="/opt/nvim-linux64/bin":$PATH
 export PATH="/opt/apache-maven-3.9.6/bin":$PATH
+
+
+export OPENAI_API_KEY=####

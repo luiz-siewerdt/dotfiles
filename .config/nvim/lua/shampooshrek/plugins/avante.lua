@@ -2,6 +2,7 @@ return {
   "yetone/avante.nvim",
   event = "VeryLazy",
   version = false, -- Set this to "*" to always pull the latest release version, or set it to false to update to the latest code changes.
+  enabled = false,
   opts = {
     -- add any opts here
     -- for example
@@ -48,11 +49,42 @@ return {
     },
     {
       -- Make sure to set this up properly if you have lazy=true
-      'MeanderingProgrammer/render-markdown.nvim',
+      "MeanderingProgrammer/render-markdown.nvim",
       opts = {
         file_types = { "markdown", "Avante" },
       },
       ft = { "markdown", "Avante" },
+    },
+  },
+
+  {
+    "olimorris/codecompanion.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+    },
+    opts = {
+      adapters = {
+        openai = function()
+          return require("codecompanion.adapters").extend("openai", {
+            env = {},
+          })
+        end,
+        gemini = function()
+          return require("codecompanion.adapters").extend("gemini", {
+            env = {},
+          })
+        end,
+      },
+      strategies = {
+        -- Change the default chat adapter
+        chat = {
+          adapter = "gemini",
+        },
+        inline = {
+          adapter = "gemini",
+        },
+      },
     },
   },
 }

@@ -77,7 +77,6 @@ au!
 autocmd VimEnter * silent !echo -ne "\e[2 q"
 augroup END
 
-
 let mapleader = " "
 
 map <C-s> :w!<CR>
