@@ -1,40 +1,40 @@
 return {
-  {
-    "rcarriga/nvim-dap-ui",
-    dependencies = { "nvim-neotest/nvim-nio" },
+	{
+		"rcarriga/nvim-dap-ui",
+		dependencies = { "nvim-neotest/nvim-nio" },
   -- stylua: ignore
   keys = {
     { "<leader>du", function() require("dapui").toggle({ }) end, desc = "Dap UI" },
     { "<leader>de", function() require("dapui").eval() end, desc = "Eval", mode = {"n", "v"} },
   },
-    opts = {},
-    config = function(_, opts)
-      local dap = require("dap")
-      local dapui = require("dapui")
-      dapui.setup(opts)
-      dap.listeners.after.event_initialized["dapui_config"] = function()
-        dapui.open({})
-      end
-      dap.listeners.before.event_terminated["dapui_config"] = function()
-        dapui.close({})
-      end
-      dap.listeners.before.event_exited["dapui_config"] = function()
-        dapui.close({})
-      end
-    end,
-  },
-  {
-    "mfussenegger/nvim-dap",
-    recommended = true,
-    desc = "Debugging support. Requires language specific adapters to be configured. (see lang extras)",
+		opts = {},
+		config = function(_, opts)
+			local dap = require("dap")
+			local dapui = require("dapui")
+			dapui.setup(opts)
+			dap.listeners.after.event_initialized["dapui_config"] = function()
+				dapui.open({})
+			end
+			dap.listeners.before.event_terminated["dapui_config"] = function()
+				dapui.close({})
+			end
+			dap.listeners.before.event_exited["dapui_config"] = function()
+				dapui.close({})
+			end
+		end,
+	},
+	{
+		"mfussenegger/nvim-dap",
+		recommended = true,
+		desc = "Debugging support. Requires language specific adapters to be configured. (see lang extras)",
 
-    dependencies = {
-      "rcarriga/nvim-dap-ui",
-      {
-        "theHamsta/nvim-dap-virtual-text",
-        opts = {},
-      },
-    },
+		dependencies = {
+			"rcarriga/nvim-dap-ui",
+			{
+				"theHamsta/nvim-dap-virtual-text",
+				opts = {},
+			},
+		},
 
     -- stylua: ignore
     keys = {
@@ -57,42 +57,42 @@ return {
       { "<leader>dw", function() require("dap.ui.widgets").hover() end, desc = "Widgets" },
     },
 
-    config = function()
-      -- setup dap config by VsCode launch.json file
-      local vscode = require("dap.ext.vscode")
-      local json = require("plenary.json")
-      vscode.json_decode = function(str)
-        return vim.json.decode(json.json_strip_comments(str))
-      end
-    end,
-    opts = function()
-      local dap = require("dap")
-      if not dap.adapters["netcoredbg"] then
-        require("dap").adapters["netcoredbg"] = {
-          type = "executable",
-          command = vim.fn.exepath("netcoredbg"),
-          args = { "--interpreter=vscode" },
-          options = {
-            detached = false,
-          },
-        }
-      end
-      for _, lang in ipairs({ "cs", "fsharp", "vb" }) do
-        if not dap.configurations[lang] then
-          dap.configurations[lang] = {
-            {
-              type = "netcoredbg",
-              name = "Launch file",
-              request = "launch",
-              ---@diagnostic disable-next-line: redundant-parameter
-              program = function()
-                return vim.fn.input("Path to dll: ", vim.fn.getcwd() .. "/", "file")
-              end,
-              cwd = "${workspaceFolder}",
-            },
-          }
-        end
-      end
-    end,
-  },
+		config = function()
+			-- setup dap config by VsCode launch.json file
+			local vscode = require("dap.ext.vscode")
+			local json = require("plenary.json")
+			vscode.json_decode = function(str)
+				return vim.json.decode(json.json_strip_comments(str))
+			end
+		end,
+		opts = function()
+			local dap = require("dap")
+			if not dap.adapters["netcoredbg"] then
+				require("dap").adapters["netcoredbg"] = {
+					type = "executable",
+					command = vim.fn.exepath("netcoredbg"),
+					args = { "--interpreter=vscode" },
+					options = {
+						detached = false,
+					},
+				}
+			end
+			for _, lang in ipairs({ "cs", "fsharp", "vb" }) do
+				if not dap.configurations[lang] then
+					dap.configurations[lang] = {
+						{
+							type = "netcoredbg",
+							name = "Launch file",
+							request = "launch",
+							---@diagnostic disable-next-line: redundant-parameter
+							program = function()
+								return vim.fn.input("Path to dll: ", vim.fn.getcwd() .. "/", "file")
+							end,
+							cwd = "${workspaceFolder}",
+						},
+					}
+				end
+			end
+		end,
+	},
 }

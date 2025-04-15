@@ -76,3 +76,14 @@ augroup myCmds
 au!
 autocmd VimEnter * silent !echo -ne "\e[2 q"
 augroup END
+
+let mapleader = " "
+
+map <C-s> :w!<CR>
+
+map <C-h>  <C-w>h
+map <C-l>  <C-w>l
+map <C-j>  <C-w>j
+map <C-k>  <C-w>k
+
+map <leader>e :Explore<CR>
