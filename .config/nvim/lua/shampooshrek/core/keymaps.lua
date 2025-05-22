@@ -26,6 +26,7 @@ vim.g.maplocalleader = "\\"
 local opts = { noremap = true, silent = true }
 local map = vim.keymap
 
+map.set("n", "<C-a>", "ggVG", opts)
 map.set({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
 map.set("n", "<leader>q", ":q<CR>", WithDesc(opts, "close tab"))
 map.set("n", "<leader>Q", ":qa<CR>", WithDesc(opts, "close all"))
