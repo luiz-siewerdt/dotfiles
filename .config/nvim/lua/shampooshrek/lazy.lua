@@ -8,15 +8,18 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
       { out,                            "WarningMsg" },
       { "\nPress any key to exit..." },
     }, true, {})
-    vim.fn.getchar()
     os.exit(1)
+    vim.fn.getchar()
   end
 end
 vim.opt.rtp:prepend(lazypath)
 
-
 require("lazy").setup({
-  { import = "shampooshrek.plugins" },
+  { import = "shampooshrek.plugins.ui" },
+  { import = "shampooshrek.plugins.utils" },
+  { import = "shampooshrek.plugins.editor" },
+  { import = "shampooshrek.plugins.coding" },
+  { import = "shampooshrek.plugins.colorschemes" },
   { import = "shampooshrek.plugins.lsp" },
 }, {
   install = {

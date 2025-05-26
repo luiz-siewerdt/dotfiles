@@ -1,23 +1,23 @@
 _G.Shampoo = {}
-
 _G.WithDesc = function(opts, desc)
-	return vim.tbl_extend("force", opts, { desc = desc })
+  return vim.tbl_extend("force", opts, { desc = desc })
 end
 
+
 Shampoo.config_files = function()
-	local fzf = require("fzf-lua")
-	local config_location = vim.fn.stdpath("config")
-	fzf.files({ cwd = config_location })
+  local fzf = require("fzf-lua")
+  local config_location = vim.fn.stdpath("config")
+  fzf.files({ cwd = config_location })
 end
 
 local delete_all_buffers = function()
-	local bufferline = require("bufferline")
-	for _, e in ipairs(bufferline.get_elements().elements) do
-		print(vim.inspect(e))
-		vim.schedule(function()
-			require("bufdelete").bufdelete(e.id)
-		end)
-	end
+  local bufferline = require("bufferline")
+  for _, e in ipairs(bufferline.get_elements().elements) do
+    print(vim.inspect(e))
+    vim.schedule(function()
+      require("bufdelete").bufdelete(e.id)
+    end)
+  end
 end
 
 vim.g.mapleader = " "

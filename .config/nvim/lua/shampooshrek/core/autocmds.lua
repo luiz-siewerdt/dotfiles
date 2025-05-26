@@ -1,4 +1,3 @@
--- require("telescope").load_extension("projects")
 vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = "*",
   callback = function(args)
