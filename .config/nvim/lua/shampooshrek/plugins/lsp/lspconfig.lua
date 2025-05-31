@@ -1,6 +1,7 @@
 local config = require("shampooshrek.config.lsp.utils.conf")
 local languages = require("shampooshrek.config.lsp.servers.servers")
 
+
 return {
   {
     "hoffs/omnisharp-extended-lsp.nvim",

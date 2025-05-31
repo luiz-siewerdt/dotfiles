@@ -55,6 +55,56 @@ return {
         "Normal:BlinkCmpDocBorder,FloatBorder:FloatBorder,CursorLine:BlinkCmpMenuSelection,Search:None",
         draw = {
           treesitter = { "lsp" },
+          components = {
+            kind_icon = {
+              text = function(ctx)
+                local icon, _, _ = require("mini.icons").get('lsp', ctx.kind)
+                if vim.tbl_contains({ "Path" }, ctx.source_name) then
+                  local dev_icon, _, _ = require("mini.icons").get("file", ctx.label)
+                  if dev_icon then
+                    icon = dev_icon
+                  end
+                end
+                return icon .. ctx.icon_gap
+              end,
+              -- (optional) use highlights from mini.icons
+              -- highlight = function(ctx)
+              --   local _, hl, _ = require('mini.icons').get('lsp', ctx.kind)
+              --   return hl
+              -- end,
+              highlight = function(ctx)
+                local _, hl, _ = require('mini.icons').get('lsp', ctx.kind)
+                if vim.tbl_contains({ "Path" }, ctx.source_name) then
+                  local _, hl2, _ = require("mini.icons").get("file", ctx.label)
+                  if hl2 then
+                    hl = hl2
+                  end
+                end
+                return hl
+              end,
+            },
+            kind = {
+              highlight = function(ctx)
+                local _, hl, _ = require('mini.icons').get('lsp', ctx.kind)
+                if vim.tbl_contains({ "Path" }, ctx.source_name) then
+                  local _, hl2, _ = require("mini.icons").get("file", ctx.label)
+                  if hl2 then
+                    hl = hl2
+                  end
+                end
+                return hl
+              end,
+              --   local hl = ctx.kind_hl
+              --   if vim.tbl_contains({ "Path" }, ctx.source_name) then
+              --     local _, hl, _ = require("mini.icons").get("file", ctx.label)
+              --     if hl then
+              --       hl = hl
+              --     end
+              --   end
+              --   return hl
+              -- end,
+            }
+          }
         },
       },
       documentation = {

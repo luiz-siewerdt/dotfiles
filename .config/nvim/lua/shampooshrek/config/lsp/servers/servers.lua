@@ -18,6 +18,7 @@ M.servers = {
   dockerls = {},
   tailwindcss = {},
   css_variables = {},
+  rust_analyzer = {},
   lua_ls = lua_conf,
   jdtls = java_conf,
   omnisharp = omnisharp_conf,
