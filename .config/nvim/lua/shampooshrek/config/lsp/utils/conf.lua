@@ -29,6 +29,13 @@ M.setup = function(_, opts)
     config.on_attach = on_attach
     lspconfig[server].setup(config)
   end
+
+  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+    vim.lsp.handlers.hover, { border = "rounded" }
+  )
+  vim.diagnostic.config {
+    float = { border = "rounded" }
+  }
 end
 
 return M
