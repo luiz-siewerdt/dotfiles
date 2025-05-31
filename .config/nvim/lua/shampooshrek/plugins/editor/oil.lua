@@ -9,8 +9,10 @@ return {
     skip_confirm_for_simple_edits = true,
     columns = { "icon" },
     keymaps = {
+      ["<C-s>"] = false,
       ["<C-h>"] = false,
       ["<M-h>"] = "actions.select_split",
+      ["<C-v>"] = { "actions.select", opts = { vertical = true } },
     },
     view_options = {
       show_hidden = true,

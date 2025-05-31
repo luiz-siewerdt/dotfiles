@@ -1,6 +1,7 @@
 return {
   "numToStr/Comment.nvim",
-  lazy = true,
+  event = "InsertEnter",
+  -- lazy = false,
   opts = {},
   config = function()
     require("Comment").setup({
