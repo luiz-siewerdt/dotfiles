@@ -1,0 +1,41 @@
+[general]
+import = [
+  "~/.config/alacritty/themes/tokyonight.toml"
+]
+
+[env]
+TERM = "xterm-256color"
+
+[keyboard]
+bindings = [
+  { key = "F11", action = "ToggleFullscreen" },
+  { key = "F2", action = "CreateNewWindow" },
+  { key = "F3", mods = "Command", chars = "\u0002%" },
+]
+
+[window]
+dynamic_title = false
+opacity = 0.95
+
+dimensions = { columns = 80, lines = 24 }
+padding = { x = 0, y = 0 }
+
+
+[font]
+size = 8
+
+[font.bold]
+family = "CaskaydiaCove Nerdck Font"
+style = "Bold"
+
+[font.bold_italic]
+family = "CaskaydiaCove Nerdck Font"
+style = "Bold Italic"
+
+[font.italic]
+family = "CaskaydiaCove Nerdck Font"
+style = "Italic"
+
+[font.normal]
+family = "JetBrainsMono Nerd Font"
+style = "Regular"

@@ -1,0 +1,185 @@
+# [package]
+# authors = ["Henrik Friedrichsen <henrik@affekt.org>"]
+# description = "ncurses Spotify client written in Rust using librespot, inspired by ncmpc and the likes."
+# edition = "2021"
+# exclude = ["images/**"]
+# keywords = ["spotify", "ncurses", "librespot", "terminal"]
+# license = "BSD-2-Clause"
+# name = "ncspot"
+# readme = "README.md"
+# repository = "https://github.com/hrkfdn/ncspot"
+# version = "1.2.0"
+#
+# [badges]
+# maintenance = { status = "actively-developed" }
+#
+# [workspace]
+# members = [".", "xtask"]
+#
+# [workspace.lints.clippy]
+# enum_glob_use = "warn"
+# use_self = "deny"
+# multiple_inherent_impl = "deny"
+#
+# [lints]
+# workspace = true
+#
+# [profile.release]
+# lto = true
+# codegen-units = 1
+#
+# [profile.optimized]
+# inherits = "release"
+# lto = false
+# codegen-units = 16
+#
+# [dependencies]
+# chrono = "0.4"
+# clap = "4.5.11"
+# arboard = { version = "3.4", optional = true }
+# crossbeam-channel = "0.5"
+# zbus = { version = "4.4.0", default-features = false, features = [
+#   "tokio",
+# ], optional = true }
+# fern = "0.6"
+# futures = "0.3"
+# ioctl-rs = { version = "0.2", optional = true }
+# libc = "0.2.155"
+# librespot-core = "0.4.2"
+# librespot-playback = "0.4.2"
+# librespot-protocol = "0.4.2"
+# log = "0.4.22"
+# pancurses = { version = "0.17.0", optional = true }
+# parse_duration = "2.1.1"
+# platform-dirs = "0.3.0"
+# rand = "0.8"
+# regex = "1"
+# reqwest = { version = "0.12", features = ["blocking", "json"] }
+# serde = "1.0"
+# serde_cbor = "0.11.2"
+# serde_json = "1.0"
+# strum = "0.26"
+# strum_macros = "0.26"
+# tokio = { version = "1", features = ["rt-multi-thread", "sync", "time", "net"] }
+# tokio-util = { version = "0.7.11", features = ["codec"] }
+# tokio-stream = { version = "0.1.15", features = ["sync"] }
+# toml = "0.8"
+# unicode-width = "0.1.13"
+# url = "2.5"
+# cursive_buffered_backend = "0.6.1"
+#
+# [target.'cfg(unix)'.dependencies]
+# signal-hook = "0.3.0"
+#
+# [dependencies.rspotify]
+# default-features = false
+# features = ["client-ureq", "ureq-native-tls"]
+# version = "0.13.2"
+#
+# [dependencies.cursive]
+# default-features = false
+# version = "0.20.0"
+#
+# [dependencies.notify-rust]
+# default-features = false
+# version = "4"
+# # Use zbus, which we already depend on, instead of dbus.
+# features = ["z"]
+# optional = true
+#
+# [features]
+# alsa_backend = ["librespot-playback/alsa-backend"]
+# cover = ["ioctl-rs"] # Support displaying the album cover
+# default = [
+#   "share_clipboard",
+#   "pulseaudio_backend",
+#   "mpris",
+#   "notify",
+#   "crossterm_backend",
+# ]
+# mpris = ["zbus"] # Allow ncspot to be controlled via MPRIS API
+# ncurses_backend = ["cursive/ncurses-backend"]
+# notify = ["notify-rust"] # Show what's playing via a notification
+# crossterm_backend = ["cursive/crossterm-backend"]
+# pancurses_backend = ["cursive/pancurses-backend", "pancurses/win32"]
+# portaudio_backend = ["librespot-playback/portaudio-backend"]
+# pulseaudio_backend = ["librespot-playback/pulseaudio-backend"]
+# rodio_backend = ["librespot-playback/rodio-backend"]
+# share_clipboard = [
+#   "arboard",
+#   "arboard/wayland-data-control",
+# ] # Share a link to the system clipboard
+# share_selection = [
+#   "arboard",
+#   "arboard/wayland-data-control",
+# ] # Use the primary selection for sharing - linux and bsd only
+# termion_backend = ["cursive/termion-backend"]
+#
+# [package.metadata.deb]
+# assets = [
+#   [
+#     "target/release/ncspot",
+#     "usr/bin/",
+#     "755",
+#   ],
+#   [
+#     "misc/ncspot.desktop",
+#     "usr/share/applications/",
+#     "644",
+#   ],
+#   [
+#     "images/logo.svg",
+#     "usr/share/icons/hicolor/scalable/apps/ncspot.svg",
+#     "644",
+#   ],
+#   [
+#     "README.md",
+#     "usr/share/doc/ncspot/README.md",
+#     "644",
+#   ],
+# ]
+#
+# depends = "$auto"
+# extended-description = """\
+# ncurses Spotify client written in Rust using librespot. \
+# It is heavily inspired by ncurses MPD clients, such as ncmpc."""
+# license-file = ["LICENSE"]
+# priority = "optional"
+# section = "sound"
+
+[theme]
+background = ""
+primary = "#a9b1d6"
+
+secondary = "#7aa2f7"
+title = "#7aa2f7"
+playing = "#32344a"
+
+playing_selected = "#a9b1d6"
+playing_bg = "#a9b1d6"
+
+highlight = "#a9b1d6"
+highlight_bg = "#32344a"
+
+error = "#FFFFFF"
+error_bg = "#f7768e"
+
+statusbar = "#a9b1d6"
+statusbar_progress = "#7aa2f7"
+statusbar_bg = ""
+
+cmdline = "#a9b1d6"
+cmdline_bg = "#000000"
+
+search_match = "#f7768e"
+
+[colors.normal]
+black = '#32344a'
+red = '#f7768e'
+green = '#9ece6a'
+yellow = '#e0af68'
+
+blue = '#7aa2f7'
+magenta = '#ad8ee6'
+cyan = '#7dcfff'
+white = '#9699a8'

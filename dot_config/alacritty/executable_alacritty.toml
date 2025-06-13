@@ -1,0 +1,41 @@
+[general]
+import = [
+  "~/.config/alacritty/themes/dracula.toml"
+]
+
+[env]
+TERM = "xterm-256color"
+
+[keyboard]
+bindings = [
+  { key = "F11", action = "ToggleFullscreen" },
+  { key = "F2", action = "CreateNewWindow" },
+  { key = "F3", mods = "Command", chars = "\u0002%" },
+]
+
+[window]
+dynamic_title = false
+opacity = 1
+
+dimensions = { columns = 80, lines = 24 }
+padding = { x = 0, y = 3 }
+
+
+[font]
+size = 8
+
+[font.bold]
+family = "JetBrainsMono Nerd Font Mono"
+style = "Bold"
+
+[font.bold_italic]
+family = "JetBrainsMono Nerd Font"
+style = "Bold Italic"
+
+[font.italic]
+family = "JetBrainsMono Nerd Font"
+style = "Italic"
+
+[font.normal]
+family = "JetBrainsMono Nerd Font Mono"
+style = "Regular"

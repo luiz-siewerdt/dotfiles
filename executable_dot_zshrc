@@ -1,0 +1,46 @@
+fastfetch
+
+export ZSH=~/.oh-my-zsh
+
+export DEV=$HOME/Documents/DevOffice
+export CONFIG=$HOME/.config
+export DOTFILES=$HOME/Documents/dotfiles
+export TERM=alacritty
+export DOTNET_ROOT=/usr/share/dotnet
+
+export SUDO_EDITOR=nvim
+export EDITOR=nvim
+export VISUAL=nvim
+
+export QT_QPA_PLATFORM=wayland
+export QT_QPA_PLATFORMTHEME=qt5ct
+export QT_WAYLAND_SHELL_INTEGRATION=layzer-shell
+
+export BROWSER="brave"
+
+ZSH_THEME="avit"
+
+plugins=(
+  # tmux
+  git
+  zsh-syntax-highlighting
+  zsh-autosuggestions
+  fast-syntax-highlighting
+)
+
+source $ZSH/oh-my-zsh.sh
+
+export PATH=$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools
+export PATH="$PATH:/home/shampoo-shrek/.spicetify"
+export PATH="$DEV/scripts":$PATH
+export PATH="$HOME/":$PATH
+export PATH="$HOME/.spicetify":$PATH
+export PATH="$HOME/.local/bin":$PATH
+export PATH="$HOME/.local/kitty.app/bin/":$PATH
+export PATH="$HOME/.cargo/bin":$PATH
+export PATH="/usr/local/bin":$PATH
+export PATH="/opt/nvim-linux64/bin":$PATH
+export PATH="/opt/apache-maven-3.9.6/bin":$PATH
+export PATH="$HOME/.config/emacs/bin":$PATH
+
+bindkey "^Y" autosuggest-accept
