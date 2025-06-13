@@ -1,8 +1,8 @@
 _G.Shampoo = {}
-
 _G.WithDesc = function(opts, desc)
   return vim.tbl_extend("force", opts, { desc = desc })
 end
+
 
 Shampoo.config_files = function()
   local fzf = require("fzf-lua")
