@@ -144,6 +144,13 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   end,
 })
 
+
+vim.api.nvim_create_autocmd("BufWritePost", {
+  callback = function()
+    vim.cmd("SessionSave")
+  end
+})
+
 vim.diagnostic.config({
   virtual_text = true, -- Disable inline text (optional)
   signs = true,        -- Enable signs in the gutter

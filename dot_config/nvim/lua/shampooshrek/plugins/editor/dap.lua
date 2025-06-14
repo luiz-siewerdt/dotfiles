@@ -1,11 +1,12 @@
 local js_conf = require("shampooshrek.config.dap.languages.javascript")
+local py_conf = require("shampooshrek.config.dap.languages.python")
 local keys = require("shampooshrek.config.dap.keys")
 
 return {
   {
     "mfussenegger/nvim-dap",
     recommended = true,
-    lazy = true,
+    lazy = false,
     desc = "Debugging support. Requires language specific adapters to be configured. (see lang extras)",
 
     dependencies = {
@@ -30,6 +31,9 @@ return {
       local dap = require("dap")
       js_conf.setup_adapters(dap)
       js_conf.setup_config(dap)
+
+      py_conf.setup_adapters(dap)
+      py_conf.setup_config(dap)
     end,
   },
 }

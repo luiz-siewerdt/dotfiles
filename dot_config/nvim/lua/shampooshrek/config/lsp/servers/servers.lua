@@ -1,6 +1,6 @@
 local powershell_conf = require("shampooshrek.config.lsp.servers.powershell")
-local lua_conf = require("shampooshrek.config.lsp.servers.lua")
 local java_conf = require("shampooshrek.config.lsp.servers.java")
+local lua_conf = require("shampooshrek.config.lsp.servers.lua")
 local omnisharp_conf = require("shampooshrek.config.lsp.servers.omnisharp")
 
 local M = {}
