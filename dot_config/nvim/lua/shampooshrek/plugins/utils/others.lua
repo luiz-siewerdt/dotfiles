@@ -2,7 +2,7 @@ return {
   -- { "artur-shaik/jc.nvim" },
   {
     "norcalli/nvim-colorizer.lua",
-    lazy = true,
+    lazy = false,
     config = function()
       require("colorizer").setup()
     end,

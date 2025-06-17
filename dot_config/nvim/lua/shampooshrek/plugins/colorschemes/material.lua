@@ -4,9 +4,12 @@ return {
   config = function()
     require("material").setup({
       disable = {
-        background = false,
+        background = true,
       },
       lualine_style = "stealth",
+      custom_colors = function(colors)
+        colors.editor.active = "NONE"
+      end
     })
   end,
 }
