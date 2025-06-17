@@ -18,7 +18,7 @@ dynamic_title = false
 opacity = 1
 
 dimensions = { columns = 80, lines = 24 }
-padding = { x = 0, y = 3 }
+padding = { x = 0, y = 0 }
 
 
 [font]

@@ -156,5 +156,3 @@ vim.diagnostic.config({
   signs = true,        -- Enable signs in the gutter
   underline = true,    -- Enable underlines for diagnostics
 })
-
-vim.api.nvim_set_hl(0, 'LualineNormal', { bg = '#1e222a', fg = '#ffffff' })
