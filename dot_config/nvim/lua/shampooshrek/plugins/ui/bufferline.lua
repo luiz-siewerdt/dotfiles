@@ -2,6 +2,7 @@ return {
   {
     "akinsho/bufferline.nvim",
     version = "*",
+    event = { "SessionLoadPost", "BufReadPre", "BufNewFile" },
     dependencies = "nvim-tree/nvim-web-devicons",
     config = function()
       require("bufferline").setup({
@@ -15,10 +16,10 @@ return {
             end
             return s
           end,
-          -- indicator = {
-          --   icon = '▎', -- this should be omitted if indicator style is not 'icon'
-          --   style = 'underline'
-          -- },
+          indicator = {
+            icon = '▎', -- this should be omitted if indicator style is not 'icon'
+            style = 'underline'
+          },
         },
         highlights = {
           fill = {
@@ -84,8 +85,8 @@ return {
           numbers_selected = {
             fg = '#FFFFFF',
             bg = "",
-            bold = true,
-            italic = true,
+            bold = false,
+            italic = false,
           },
           diagnostic = {
             fg = '#FFFFFF',
@@ -98,8 +99,8 @@ return {
           diagnostic_selected = {
             fg = '#FFFFFF',
             bg = "",
-            bold = true,
-            italic = true,
+            bold = false,
+            italic = false,
           },
           hint = {
             fg = '#FFFFFF',
@@ -114,8 +115,8 @@ return {
             fg = '#FFFFFF',
             bg = "",
             sp = '',
-            bold = true,
-            italic = true,
+            bold = false,
+            italic = false,
           },
           hint_diagnostic = {
             fg = '#FFFFFF',
@@ -130,8 +131,8 @@ return {
             fg = '#FFFFFF',
             bg = "",
             sp = '',
-            bold = true,
-            italic = true,
+            bold = false,
+            italic = false,
           },
           info = {
             fg = '#FFFFFF',
@@ -146,8 +147,8 @@ return {
             fg = '#FFFFFF',
             bg = "",
             sp = '',
-            bold = true,
-            italic = true,
+            bold = false,
+            italic = false,
           },
           info_diagnostic = {
             fg = '#FFFFFF',
@@ -162,8 +163,8 @@ return {
             fg = '#FFFFFF',
             bg = "",
             sp = '',
-            bold = true,
-            italic = true,
+            bold = false,
+            italic = false,
           },
           warning = {
             fg = '#FFFFFF',
@@ -178,8 +179,8 @@ return {
             fg = '#FFFFFF',
             bg = "",
             sp = '',
-            bold = true,
-            italic = true,
+            bold = false,
+            italic = false,
           },
           warning_diagnostic = {
             fg = '#FFFFFF',
@@ -194,8 +195,8 @@ return {
             fg = '#FFFFFF',
             bg = "",
             sp = '',
-            bold = true,
-            italic = true,
+            bold = false,
+            italic = false,
           },
           error = {
             fg = '#FFFFFF',
@@ -210,8 +211,8 @@ return {
             fg = '#FFFFFF',
             bg = "",
             sp = '',
-            bold = true,
-            italic = true,
+            bold = false,
+            italic = false,
           },
           error_diagnostic = {
             fg = '#FFFFFF',
@@ -226,8 +227,8 @@ return {
             fg = '#FFFFFF',
             bg = "",
             sp = '',
-            bold = true,
-            italic = true,
+            italic = false,
+            bold = false,
           },
           modified = {
             fg = '#FFFFFF',
@@ -244,17 +245,17 @@ return {
           duplicate_selected = {
             fg = '#FFFFFF',
             bg = "",
-            italic = true,
+            italic = false,
           },
           duplicate_visible = {
             fg = '#FFFFFF',
             bg = "",
-            italic = true,
+            italic = false,
           },
           duplicate = {
             fg = '#FFFFFF',
             bg = "",
-            italic = true,
+            italic = false,
           },
           separator_selected = {
             fg = '#232637',
@@ -279,20 +280,20 @@ return {
           pick_selected = {
             fg = '#232637',
             bg = "",
-            bold = true,
-            italic = true,
+            italic = false,
+            bold = false,
           },
           pick_visible = {
             fg = '#232637',
             bg = "",
-            bold = true,
-            italic = true,
+            bold = false,
+            italic = false,
           },
           pick = {
             fg = '#232637',
             bg = "",
-            bold = true,
-            italic = true,
+            bold = false,
+            italic = false,
           },
           offset_separator = {
             fg = '#232637',

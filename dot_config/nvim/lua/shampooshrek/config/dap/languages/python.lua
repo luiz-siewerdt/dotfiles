@@ -2,7 +2,6 @@ local M = {}
 
 
 M.setup_adapters = function(dap)
-  print("host")
   dap.adapters.python = function(cb, config)
     if config.request == 'attach' then
       ---@diagnostic disable-next-line: undefined-field

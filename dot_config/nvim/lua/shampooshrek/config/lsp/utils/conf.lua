@@ -1,6 +1,6 @@
 local M = {}
 
-M.signarute_conf = {
+M.signature_conf = {
   floating_window_off_x = 10,
   max_width = 100,
   bind = true,
@@ -23,16 +23,12 @@ M.setup = function(_, opts)
     require("lsp_signature").on_attach(M.signature_conf, bufnr)
   end
 
-  local lspconfig = require("lspconfig")
   for server, config in pairs(opts.servers) do
     config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
     config.on_attach = on_attach
-    lspconfig[server].setup(config)
+    vim.lsp.config(server, config)
   end
 
-  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
-    vim.lsp.handlers.hover, { border = "rounded" }
-  )
   vim.diagnostic.config {
     float = { border = "rounded" }
   }
