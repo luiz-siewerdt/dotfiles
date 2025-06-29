@@ -151,6 +151,15 @@ vim.api.nvim_create_autocmd("BufWritePost", {
   end
 })
 
+vim.api.nvim_create_autocmd({ "BufReadPre", "BufNewFile", "SessionLoadPost" }, {
+  callback = function()
+    local filetype = vim.bo.filetype
+    if filetype ~= 'oil' then
+      vim.api.nvim_exec_autocmds("User", { pattern = 'StartLsp' })
+    end
+  end
+})
+
 vim.diagnostic.config({
   virtual_text = true, -- Disable inline text (optional)
   signs = true,        -- Enable signs in the gutter

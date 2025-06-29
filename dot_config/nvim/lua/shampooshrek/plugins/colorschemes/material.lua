@@ -6,6 +6,15 @@ return {
       disable = {
         background = true,
       },
+      custom_highlights = {
+        FlashLabel = { bg = "#84ffff", fg = "#000000" },
+        FlashMatch = { bg = "#bdc1d9", fg = "#000000" },
+        FlashCurrent = { bg = "NONE", fg = "#84ffff" },
+
+        Search = { bg = "#bdc1d9", fg = "#000000" },
+        IncSearch = { bg = "#bdc1d9", fg = "#000000" },
+        PmenuSel = { fg = "#ffffff", bg = "#232637" }
+      },
       lualine_style = "stealth",
       custom_colors = function(colors)
         colors.editor.active = "NONE"

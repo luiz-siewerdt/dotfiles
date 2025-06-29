@@ -19,7 +19,6 @@ M.setup = function(_, opts)
     vim.keymap.set("n", "gd", vim.lsp.buf.definition, with_table("goto definition"))
     vim.keymap.set("n", "K", vim.lsp.buf.hover, with_table("hover"))
     vim.keymap.set("n", "gr", vim.lsp.buf.references, with_table("references"))
-    vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, with_table("code actions"))
     require("lsp_signature").on_attach(M.signature_conf, bufnr)
   end
 

@@ -55,9 +55,21 @@ map.set("v", "<A-k>", ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv
 map.set("n", "<leader>e", ":OilToggle<CR>", WithDesc(opts, "Open Explorer"))
 
 -- Search --
-map.set("n", "<leader><leader>", ":FzfLua files<CR>", WithDesc(opts, "Find"))
 map.set("n", "<leader>fc", ":lua Shampoo.config_files()<CR>", WithDesc(opts, "Config Files"))
+
+map.set("n", "<leader><leader>", ":FzfLua files<CR>", WithDesc(opts, "Find"))
 map.set("n", "<leader>fg", ":FzfLua live_grep<CR>", WithDesc(opts, "Search grep"))
+
+map.set("n", "<leader>fdw", ":FzfLua lsp_workspace_diagnostics<CR>", WithDesc(opts, "Workspace Diagnostics"))
+map.set("n", "<leader>fdd", ":FzfLua lsp_document_diagnostics<CR>", WithDesc(opts, "Document Diagnostics"))
+
+map.set("n", "<leader>fb", ":FzfLua buffers<CR>", WithDesc(opts, "Buffers"))
+
+map.set("n", "<leader>fr", ":FzfLua lsp_references<CR>", WithDesc(opts, "References"))
+map.set("n", "<leader>ff", ":FzfLua lsp_finder<CR>", WithDesc(opts, "Finder"))
+map.set("n", "<leader>fs", ":FzfLua lsp_document_symbols<CR>", WithDesc(opts, "Document Symbols"))
+
+map.set("n", "<leader>fp", ":FzfLua dap_breakpoints<CR>", WithDesc(opts, "Breakpoints"))
 
 -- Diagnostics --
 map.set("n", "gl", vim.diagnostic.open_float, WithDesc(opts, "Open Diagnostic"))
@@ -75,3 +87,7 @@ map.set({ "i" }, "<C-k>", "<cmd>lua require'luasnip'.expand_or_jump()<CR>", opts
 map.set({ "i" }, "<C-h>", "<cmd>lua require'luasnip'.expand()<CR>", opts)
 map.set({ "i" }, "<C-l>", "<cmd>lua require'luasnip'.jump(1)<CR>", opts)
 map.set({ "i" }, "<C-j>", "<cmd>lua require'luasnip'.jump(-1)<CR>", opts)
+
+
+-- LSP --
+map.set("n", "<leader>ca", ":FzfLua lsp_code_actions<CR>", WithDesc(opts, "Code Actions"))

@@ -8,10 +8,7 @@ end
 return {
   "ibhagwan/fzf-lua",
   lazy = false,
-  -- optional for icon support
   dependencies = { "echasnovski/mini.icons" },
-  -- or if using mini.icons/mini.nvim
-  -- dependencies = { "echasnovski/mini.icons" },
   config = function()
     require("fzf-lua").setup({
       files = {

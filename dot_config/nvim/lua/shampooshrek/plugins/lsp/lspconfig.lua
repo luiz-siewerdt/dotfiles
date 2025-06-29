@@ -10,7 +10,7 @@ return {
   {
     "neovim/nvim-lspconfig",
     lazy = true,
-    event = { "BufReadPre", "BufNewFile", "SessionLoadPost" },
+    event = "User StartLsp",
     dependencies = {
       "saghen/blink.cmp",
       "ray-x/lsp_signature.nvim",
