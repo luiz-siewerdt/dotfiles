@@ -5,6 +5,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   end,
 })
 
+
 vim.api.nvim_create_user_command("OilToggle", function()
   local oil = require("oil")
   if vim.bo.filetype == "oil" then
