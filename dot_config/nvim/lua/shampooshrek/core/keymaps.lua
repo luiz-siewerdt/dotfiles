@@ -71,6 +71,9 @@ map.set("n", "<leader>fs", ":FzfLua lsp_document_symbols<CR>", WithDesc(opts, "D
 
 map.set("n", "<leader>fp", ":FzfLua dap_breakpoints<CR>", WithDesc(opts, "Breakpoints"))
 
+map.set("n", "<leader>ft", ":FzfLua colorschemes<CR>", WithDesc(opts, "colorschemes"))
+map.set("n", "<leader>fT", ":FzfLua awesome_colorschemes<CR>", WithDesc(opts, "awesome colorschemes"))
+
 -- Diagnostics --
 map.set("n", "gl", vim.diagnostic.open_float, WithDesc(opts, "Open Diagnostic"))
 
@@ -87,6 +90,38 @@ map.set({ "i" }, "<C-k>", "<cmd>lua require'luasnip'.expand_or_jump()<CR>", opts
 map.set({ "i" }, "<C-h>", "<cmd>lua require'luasnip'.expand()<CR>", opts)
 map.set({ "i" }, "<C-l>", "<cmd>lua require'luasnip'.jump(1)<CR>", opts)
 map.set({ "i" }, "<C-j>", "<cmd>lua require'luasnip'.jump(-1)<CR>", opts)
+
+
+-- API Rest --
+map.set("n", "<leader>rr", "<cmd>lua require('kulala').run()<CR>", WithDesc(opts, "Send current request"))
+map.set("n", "<leader>ra", "<cmd>lua require('kulala').run_all()<CR>", WithDesc(opts, "Send all requests"))
+map.set("n", "<leader>rs", "<cmd>lua require('kulala').show_stats()<CR>", WithDesc(opts, "Show request stats"))
+map.set("n", "<leader>ri", "<cmd>lua require('kulala').inspect()<CR>", WithDesc(opts, "Inspect current request"))
+map.set("n", "<leader>rrr", "<cmd>lua require('kulala').replay()<CR>", WithDesc(opts, "Replay last request"))
+map.set("n", "<leader>rn", "<cmd>lua require('kulala').jump_next()<CR>", WithDesc(opts, "Jump to next request"))
+map.set("n", "<leader>rp", "<cmd>lua require('kulala').jump_prev()<CR>", WithDesc(opts, "Jump to previous request"))
+map.set("n", "<leader>rf", "<cmd>lua require('kulala').search()<CR>", WithDesc(opts, "Find request in file"))
+
+map.set("n", "<leader>re", "<cmd>lua require('kulala').set_selected_env()<CR>",
+  WithDesc(opts, "Select request environment"))
+
+map.set("n", "<leader>rc", "<cmd>lua require('kulala').copy()<CR>", WithDesc(opts, "Copy request as cURL"))
+map.set("n", "<leader>rC", "<cmd>lua require('kulala').from_curl()<CR>", WithDesc(opts, "Paste request from cURL"))
+
+map.set("n", "<leader>rg", "<cmd>lua require('kulala').download_graphql_schema()<CR>",
+  WithDesc(opts, "Download GraphQL schema"))
+
+map.set("n", "<leader>ru", "<cmd>lua require('lua.kulala.ui.auth_manager').open_auth_config()<CR>",
+  WithDesc(opts, "Manage auth config"))
+
+map.set("n", "<leader>rx", "<cmd>lua require('kulala').scripts_clear_global()<CR>",
+  WithDesc(opts, "Clear global variables"))
+
+map.set("n", "<leader>rX", "<cmd>lua require('kulala').clear_cached_files()<CR>", WithDesc(opts, "Clear cached files"))
+map.set("n", "<leader>ro", "<cmd>lua require('kulala').open()<CR>", WithDesc(opts, "Open Kulala window"))
+map.set("n", "<leader>rb", "<cmd>lua require('kulala').scratchpad()<CR>", WithDesc(opts, "Open scratchpad"))
+map.set("n", "<leader>rt", "<cmd>lua require('kulala').toggle_view()<CR>", WithDesc(opts, "Toggle headers/body"))
+map.set("n", "<leader>rq", "<cmd>lua require('kulala').close()<CR>", WithDesc(opts, "Close Kulala window"))
 
 
 -- LSP --

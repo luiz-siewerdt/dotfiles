@@ -4,8 +4,8 @@ return {
   name = "catppuccin",
   opts = {
     flavour = "mocha",
-    transparent_background = true,
-    styles = { -- Handles the styles of general hi groups (see `:h highlight-args`):
+    -- transparent_background = true,
+    styles = {                 -- Handles the styles of general hi groups (see `:h highlight-args`):
       comments = { "italic" }, -- Change the style of comments
       conditionals = { "italic" },
       loops = { "italic" },
@@ -20,9 +20,9 @@ return {
       operators = { "italic" },
     },
     color_overrides = {
-      all = {
-        base = "#141421",
-      },
+      -- all = {
+      --   base = "#141421",
+      -- },
     },
     integrations = {
       notify = true,

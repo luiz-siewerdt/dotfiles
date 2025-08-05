@@ -4,11 +4,11 @@ return {
   config = function()
     require("material").setup({
       disable = {
-        background = true,
+        -- background = true,
       },
       custom_highlights = {
         FlashLabel = { bg = "#84ffff", fg = "#000000" },
-        FlashMatch = { bg = "#232637", fg = "#000000" },
+        FlashMatch = { bg = "#232637", fg = "#FFFFFF" },
         FlashCurrent = { bg = "NONE", fg = "#84ffff" },
 
         Search = { bg = "#232637", fg = "#ffffff" },

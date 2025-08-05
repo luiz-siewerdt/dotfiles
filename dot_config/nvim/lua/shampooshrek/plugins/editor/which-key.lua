@@ -1,47 +1,22 @@
 return {
   "folke/which-key.nvim",
   event = "VeryLazy",
-  opts_extend = { "spec" },
   lazy = true,
+  --@type wk.Spec
   opts = {
     preset = "helix",
-    defaults = {},
     spec = {
-      {
-        mode = { "n", "v" },
-        { "<leader><tab>", group = "tabs" },
-        { "<leader>c", group = "code" },
-        { "<leader>d", group = "debug" },
-        { "<leader>f", group = "file/find" },
-        { "<leader>u", group = "ui", icon = { icon = "󰙵 ", color = "cyan" } },
-        {
-          "<leader>b",
-          group = "buffer",
-          expand = function()
-            return require("which-key.extras").expand.buf()
-          end,
-        },
-      },
-    },
+      { "<leader><tab>", name = "+tabs" },
+      { "<leader>c", name = "+code", icon = " " },
+      { "<leader>d", name = "+debug" },
+      { "<leader>f", name = "+file/find" },
+      { "<leader>u", name = "+ui" },
+      { "<leader>b", name = "+buffer" },
+      { "<leader>r", name = "+rest/kulala", icon = "󰒊 " },
+      { "<leader>l", name = "+Lazy" },
+      { "<leader>q", name = "Close Tab", icon = "󰈆 " },
+      { "<leader>Q", name = "Close All", icon = "󰈆 " },
+      { "<leader>e", name = "Explorer", icon = "  " },
+    }
   },
-  keys = {
-    {
-      "<leader>?",
-      function()
-        require("which-key").show({ global = false })
-      end,
-      desc = "Buffer Keymaps (which-key)",
-    },
-    {
-      "<c-w><space>",
-      function()
-        require("which-key").show({ keys = "<c-w>", loop = true })
-      end,
-      desc = "Window Hydra Mode (which-key)",
-    },
-  },
-  config = function(_, opts)
-    local wk = require("which-key")
-    wk.setup(opts)
-  end,
 }

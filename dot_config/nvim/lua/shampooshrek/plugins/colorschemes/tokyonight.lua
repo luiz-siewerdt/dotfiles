@@ -18,7 +18,7 @@ return {
       -- operators = { "italic" },
     },
     on_colors = function(colors)
-      colors.bg = "#0d0d14"
+      -- colors.bg = "#0d0d14"
       -- colors.bg_float = "#08080c"
     end,
   },

@@ -34,7 +34,7 @@ return {
           "powershell_es",
           "pylsp",
           "tailwindcss",
-          "ts_ls",
+          -- "ts_ls",
         },
       })
     end,
