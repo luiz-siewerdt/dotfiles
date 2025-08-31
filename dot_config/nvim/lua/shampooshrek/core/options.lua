@@ -80,3 +80,6 @@ vim.cmd([[let &t_Ce = "\e[4:0m"]])
 vim.o.guifont = "JetBrainsMono Nerd Font:h8"
 
 vim.o.shortmess = vim.o.shortmess .. "I"
+
+
+vim.g.nightflyTransparent = true

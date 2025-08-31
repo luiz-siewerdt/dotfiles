@@ -7,7 +7,7 @@ return {
 
     lualine.setup({
       options = {
-        theme = "catppuccin",
+        theme = "nightfly",
       },
     })
   end,
