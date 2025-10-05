@@ -1,4 +1,4 @@
-local folders = { "node_modules", "build", "venv", "__pycache__", ".git" }
+local folders = { "node_modules", "build", "venv", "__pycache__", ".git", "vendor" }
 local cmd_str = "fd --type f "
 
 for _, folder in pairs(folders) do

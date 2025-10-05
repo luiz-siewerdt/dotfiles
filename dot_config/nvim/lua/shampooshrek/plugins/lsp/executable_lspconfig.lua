@@ -5,7 +5,7 @@ return {
   {
     "hoffs/omnisharp-extended-lsp.nvim",
     lazy = true,
-    event = "LspAttach"
+    ft = { "cs", "c#", "csharp" }
   },
   {
     "neovim/nvim-lspconfig",

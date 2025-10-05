@@ -20,6 +20,7 @@ M.servers = {
   css_variables = {},
   rust_analyzer = {},
   terraformls = {},
+  phpactor = {},
   lua_ls = lua_conf,
   jdtls = java_conf,
   omnisharp = omnisharp_conf,

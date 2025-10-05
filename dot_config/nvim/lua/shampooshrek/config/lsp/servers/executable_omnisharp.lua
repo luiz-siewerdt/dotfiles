@@ -1,7 +1,6 @@
 -- local omn = require("omnisharp_extended")
 
 return {
-  cmd = { "omnisharp" },
   handlers = {
     ["textDocument/definition"] = require("omnisharp_extended").definition_handler,
     ["textDocument/typeDefinition"] = require("omnisharp_extended").type_definition_handler,
