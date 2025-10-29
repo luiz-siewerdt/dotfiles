@@ -148,7 +148,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 
 vim.api.nvim_create_autocmd("BufWritePost", {
   callback = function()
-    vim.cmd("SessionSave")
+    vim.cmd("AutoSession save")
   end
 })
 
@@ -166,4 +166,3 @@ vim.diagnostic.config({
   signs = true,        -- Enable signs in the gutter
   underline = true,    -- Enable underlines for diagnostics
 })
-

@@ -97,7 +97,7 @@ map.set("n", "<leader>rr", "<cmd>lua require('kulala').run()<CR>", WithDesc(opts
 map.set("n", "<leader>ra", "<cmd>lua require('kulala').run_all()<CR>", WithDesc(opts, "Send all requests"))
 map.set("n", "<leader>rs", "<cmd>lua require('kulala').show_stats()<CR>", WithDesc(opts, "Show request stats"))
 map.set("n", "<leader>ri", "<cmd>lua require('kulala').inspect()<CR>", WithDesc(opts, "Inspect current request"))
-map.set("n", "<leader>rrr", "<cmd>lua require('kulala').replay()<CR>", WithDesc(opts, "Replay last request"))
+-- map.set("n", "<leader>rrr", "<cmd>lua require('kulala').replay()<CR>", WithDesc(opts, "Replay last request"))
 map.set("n", "<leader>rn", "<cmd>lua require('kulala').jump_next()<CR>", WithDesc(opts, "Jump to next request"))
 map.set("n", "<leader>rp", "<cmd>lua require('kulala').jump_prev()<CR>", WithDesc(opts, "Jump to previous request"))
 map.set("n", "<leader>rf", "<cmd>lua require('kulala').search()<CR>", WithDesc(opts, "Find request in file"))

@@ -35,4 +35,4 @@ require("lazy").setup({
 })
 
 
-vim.cmd([[colorscheme nightfly]])
+-- vim.cmd([[colorscheme black-metal]])

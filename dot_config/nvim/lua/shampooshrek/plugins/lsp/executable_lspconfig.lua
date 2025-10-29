@@ -4,8 +4,9 @@ local languages = require("shampooshrek.config.lsp.servers.servers")
 return {
   {
     "hoffs/omnisharp-extended-lsp.nvim",
-    lazy = true,
-    ft = { "cs", "c#", "csharp" }
+    lazy = false
+    -- lazy = true,
+    -- ft = { "csharp", "cs", "c#" }
   },
   {
     "neovim/nvim-lspconfig",
