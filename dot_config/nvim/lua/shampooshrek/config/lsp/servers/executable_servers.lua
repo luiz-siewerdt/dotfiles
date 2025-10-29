@@ -7,7 +7,20 @@ local M = {}
 
 M.servers = {
   html = {},
-  pylsp = {},
+  pylsp = {
+    settings = {
+      pylsp = {
+        plugins = {
+          pycodestyle = { enabled = false },
+          autopep8 = { enabled = false },
+          yapf = { enabled = false },
+          flake8 = { enabled = false },
+        },
+        configurationSources = {}, -- Disable all configuration sources
+        format = false,            -- Disable formatting
+      },
+    },
+  },
   cssls = {},
   sqlls = {},
   -- ts_ls = {},
@@ -20,7 +33,8 @@ M.servers = {
   css_variables = {},
   rust_analyzer = {},
   terraformls = {},
-  phpactor = {},
+  intelephense = {},
+  sqlls = {},
   lua_ls = lua_conf,
   jdtls = java_conf,
   omnisharp = omnisharp_conf,
