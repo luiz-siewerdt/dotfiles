@@ -1,13 +1,18 @@
 _G.Shampoo = {}
+
 _G.WithDesc = function(opts, desc)
   return vim.tbl_extend("force", opts, { desc = desc })
 end
 
 
-Shampoo.config_files = function()
+Shampoo.config_files = function(changeCWD)
   local fzf = require("fzf-lua")
   local config_location = vim.fn.stdpath("config")
   fzf.files({ cwd = config_location })
+
+  if changeCWD then
+    vim.fn.chdir(config_location)
+  end
 end
 
 local delete_all_buffers = function()

@@ -166,4 +166,3 @@ vim.diagnostic.config({
   signs = true,        -- Enable signs in the gutter
   underline = true,    -- Enable underlines for diagnostics
 })
-
