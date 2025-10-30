@@ -7,7 +7,7 @@ return {
 
     lualine.setup({
       options = {
-        theme = "quiet",
+        theme = "auto",
       },
     })
   end,
