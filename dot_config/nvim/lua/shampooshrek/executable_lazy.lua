@@ -35,4 +35,4 @@ require("lazy").setup({
 })
 
 
--- vim.cmd([[colorscheme black-metal]])
+vim.cmd([[colorscheme material-deep-ocean]])

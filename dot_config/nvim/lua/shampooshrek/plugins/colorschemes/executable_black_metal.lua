@@ -80,6 +80,6 @@ return {
       -- Override highlight groups
       highlights = {},
     })
-    require("black-metal").load()
+    -- require("black-metal").load()
   end,
 }

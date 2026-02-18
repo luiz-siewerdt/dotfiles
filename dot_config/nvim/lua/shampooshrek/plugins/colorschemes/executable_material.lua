@@ -4,7 +4,7 @@ return {
   config = function()
     require("material").setup({
       disable = {
-        -- background = true,
+        background = true,
       },
       custom_highlights = {
         FlashLabel = { bg = "#84ffff", fg = "#000000" },

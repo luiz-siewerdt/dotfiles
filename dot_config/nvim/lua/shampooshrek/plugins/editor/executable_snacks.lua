@@ -1,3 +1,5 @@
+local p = require("shampooshrek.functions.init")
+
 local logo = [[
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢢⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠄⠀⠀⠀⠀⠀⠀⡜⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢣⠀⠀⠀⠀⠀⠀⠰⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢁⠀⠀⠀⠀⠀⠀⠀⢰⠀⠀⠀⠀⠀⡼⠁⠀⠀⠀⠀⠀⠀⡀⠀⠀⠀⠀⠀⠀
@@ -52,7 +54,7 @@ return {
             key = "r",
           },
           {
-            action = ':lua LazyVim.pick("live_grep")()',
+            action = p.Projects,
             desc = " Find Text",
             icon = " ",
             key = "g",
@@ -64,7 +66,7 @@ return {
             key = "p",
           },
           {
-            action = ":lua Shampoo.config_files()",
+            action = ":lua Shampoo.config_files(true)",
             desc = " Config",
             icon = " ",
             key = "c",

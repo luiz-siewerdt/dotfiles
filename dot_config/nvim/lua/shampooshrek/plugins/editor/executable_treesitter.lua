@@ -7,13 +7,8 @@ return {
     lazy = vim.fn.argc(-1) == 0,
     init = function(plugin)
       require("lazy.core.loader").add_to_rtp(plugin)
-      require("nvim-treesitter.query_predicates")
     end,
     cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
-    keys = {
-      { "<c-space>", desc = "Increment Selection" },
-      { "<bs>",      desc = "Decrement Selection", mode = "x" },
-    },
     opts_extend = { "ensure_installed" },
     opts = {
       highlight = { enable = true },
@@ -24,6 +19,9 @@ return {
         "diff",
         "html",
         "javascript",
+        "typescript",
+        "jsx",
+        "tsx",
         "jsdoc",
         "json",
         "lua",
@@ -62,34 +60,34 @@ return {
         },
       },
     },
-    config = function(_, opts)
-      require("nvim-treesitter.configs").setup(opts)
-    end,
+    -- config = function(_, opts)
+    --   require("nvim-treesitter.configs").setup(opts)
+    -- end,
   },
   {
     "nvim-treesitter/nvim-treesitter-textobjects",
     event = "VeryLazy",
     enabled = true,
-    config = function()
-      local move = require("nvim-treesitter.textobjects.move")
-      local configs = require("nvim-treesitter.configs")
-      for name, fn in pairs(move) do
-        if name:find("goto") == 1 then
-          move[name] = function(q, ...)
-            if vim.wo.diff then
-              local config = configs.get_module("textobjects.move")[name]
-              for key, query in pairs(config or {}) do
-                if q == query and key:find("[%]%[][cC]") then
-                  vim.cmd("normal! " .. key)
-                  return
-                end
-              end
-            end
-            return fn(q, ...)
-          end
-        end
-      end
-    end,
+    -- config = function()
+    --   local move = require("nvim-treesitter.textobjects.move")
+    --   local configs = require("nvim-treesitter.configs")
+    --   for name, fn in pairs(move) do
+    --     if name:find("goto") == 1 then
+    --       move[name] = function(q, ...)
+    --         if vim.wo.diff then
+    --           local config = configs.get_module("textobjects.move")[name]
+    --           for key, query in pairs(config or {}) do
+    --             if q == query and key:find("[%]%[][cC]") then
+    --               vim.cmd("normal! " .. key)
+    --               return
+    --             end
+    --           end
+    --         end
+    --         return fn(q, ...)
+    --       end
+    --     end
+    --   end
+    -- end,
   },
   {
     "JoosepAlviste/nvim-ts-context-commentstring",

@@ -9,6 +9,17 @@ M.signature_conf = {
   },
 }
 
+local function lsp_split(cmd, direction)
+  return function()
+    if direction == "v" then
+      vim.cmd("vsplit")
+    elseif direction == "h" then
+      vim.cmd("split")
+    end
+    cmd()
+  end
+end
+
 M.setup = function(_, opts)
   local on_attach = function(client, bufnr)
     local bufopts = { noremap = true, silent = true, buffer = bufnr }
@@ -19,6 +30,35 @@ M.setup = function(_, opts)
     vim.keymap.set("n", "gd", vim.lsp.buf.definition, with_table("goto definition"))
     vim.keymap.set("n", "K", vim.lsp.buf.hover, with_table("hover"))
     vim.keymap.set("n", "gr", vim.lsp.buf.references, with_table("references"))
+
+    vim.keymap.set(
+      "n",
+      "gvd",
+      lsp_split(vim.lsp.buf.definition, "v"),
+      with_table("goto definition (vsplit)")
+    )
+
+    vim.keymap.set(
+      "n",
+      "gsd",
+      lsp_split(vim.lsp.buf.definition, "h"),
+      with_table("goto definition (split)")
+    )
+
+    vim.keymap.set(
+      "n",
+      "gvD",
+      lsp_split(vim.lsp.buf.declaration, "v"),
+      with_table("goto declaration (vsplit)")
+    )
+
+    vim.keymap.set(
+      "n",
+      "gsD",
+      lsp_split(vim.lsp.buf.declaration, "h"),
+      with_table("goto declaration (split)")
+    )
+
     require("lsp_signature").on_attach(M.signature_conf, bufnr)
   end
 
