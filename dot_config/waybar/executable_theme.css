@@ -65,7 +65,7 @@
 
 @define-color pulseaudio @mantle;
 @define-color backlight @base;
-@define-color battery @surface0;
+@define-color battery @base;
 @define-color power @overlay2;
 
 /* State Colors */

@@ -8,10 +8,10 @@
   "modules-left": [
     "custom/initp",
     "custom/left1",
-    "hyprland/workspaces", // workspaces
+    "sway/workspaces", // workspaces
     "custom/right1",
     "custom/paddw",
-    "hyprland/window" // window title
+    "sway/window" // window title
   ],
   "modules-center": [
     "custom/left4",
@@ -28,8 +28,12 @@
   "modules-right": [
     "mpris", // media info
     "custom/left9",
+    "bluetooth",
+    "custom/wifi",
     "tray",
     "custom/left6",
+    "backlight",
+    "battery",
     "pulseaudio", // output device
     "custom/left7",
     "custom/power" // power button
@@ -43,22 +47,21 @@
     "min-length": 3,
     "max-length": 3
   },
-  "hyprland/workspaces": {
+  "sway/workspaces": {
     "on-scroll-up": "hyprctl dispatch workspace -1",
     "on-scroll-down": "hyprctl dispatch workspace +1",
     "persistent-workspaces": {}
   },
-  "hyprland/window": {
+  "sway/window": {
     "format": "{}",
     "min-length": 5,
     "rewrite": {
       // Desktop
-      "": "<span foreground='#89b4fa'> </span> Hyprland",
+      "": "<span foreground='#89b4fa'> </span> sway",
       // Terminal
       "~": "  Terminal",
       "zsh": "  Terminal",
-      "Alacritty": "  Terminal",
-      "kitty": "  Terminal",
+      "(kitty|foot)": "  $1 Terminal",
       // Browser
       "(.*)Mozilla Firefox": "<span foreground='#f38ba8'>󰈹 </span> Firefox",
       "(.*) — Mozilla Firefox": "<span foreground='#f38ba8'>󰈹 </span> $1",
