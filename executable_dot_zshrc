@@ -1,82 +1,15 @@
-export ZSH=~/.oh-my-zsh
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 
-export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
-
-# export XDG_DATA_DIRS="$HOME/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share:$XDG_DATA_DIRS"
-
-export DEV=$HOME/Documents/DevOffice
-export CONFIG=$HOME/.config
-export DOTFILES=$HOME/Documents/dotfiles
-export TERM=foot
-export TERMINAL=foot
-export DOTNET_ROOT=/usr/share/dotnet
-
-export SUDO_EDITOR=nvim
-export EDITOR=nvim
-export VISUAL=nvim
-
-export QT_QPA_PLATFORM=wayland
-export QT_QPA_PLATFORMTHEME=qt5ct
-export QT_WAYLAND_SHELL_INTEGRATION=layzer-shell
-
-export BROWSER="firefox"
-
-ZSH_THEME="avit"
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-plugins=(
-  git
-  zsh-vi-mode
-  zsh-autosuggestions
-  fast-syntax-highlighting
-)
-
-
-source $ZSH/oh-my-zsh.sh
-
-export DOTNET_ROOT=$HOME/.dotnet
-export PATH=$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools
-export PATH="$PATH:/home/shampoo-shrek/.spicetify"
-export PATH="$DEV/scripts":$PATH
-export PATH="$HOME/":$PATH
-export PATH="$HOME/.spicetify":$PATH
-export PATH="$HOME/.local/bin":$PATH
-export PATH="$HOME/.local/kitty.app/bin/":$PATH
-export PATH="$HOME/.cargo/bin":$PATH
-export PATH="/usr/local/bin":$PATH
-export PATH="/opt/nvim-linux64/bin":$PATH
-export PATH="/opt/apache-maven-3.9.6/bin":$PATH
-export PATH="$HOME/.config/emacs/bin":$PATH
-
-
-
-export FZF_DEFAULT_OPTS='
- --color=fg:#bdc1d9,bg:,hl:#bdc1d9
- --color=fg+:#bdc1d9,bg+:#232637,hl+:#ffcc66'
-
-
-alias v="nvim"
-alias cd="z"
 alias ls="eza --icons=always"
 
-alias conn-glx-dev="gcloud compute ssh l_siewerdt@glx-dev --zone=us-east4-a --tunnel-through-iap"
-alias conn-glx-prod="gcloud compute ssh l_siewerdt@glx-prod --zone=us-east4-a --tunnel-through-iap"
-
-export PATH="/home/shampoo-shrek/.config/herd-lite/bin:$PATH"
-export PHP_INI_SCAN_DIR="/home/shampoo-shrek/.config/herd-lite/bin:$PHP_INI_SCAN_DIR"
-
-eval "$(zoxide init zsh)"
-
-zvm_after_init() {
-  zvm_bindkey viins '^Y' autosuggest-accept
-}
-
-source ~/powerlevel10k/powerlevel10k.zsh-theme
 
 
-if [ -f '/home/shampoo-shrek/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/home/shampoo-shrek/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+for file in $HOME/.config/zsh/*.zsh; do
+  source "$file"
+done
 
-# The next line enables shell command completion for gcloud.
-if [ -f '/home/shampoo-shrek/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/shampoo-shrek/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+for file in $HOME/.config/zsh/private/*.zsh; do
+  source "$file"
+done
