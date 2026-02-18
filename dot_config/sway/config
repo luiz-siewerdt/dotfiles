@@ -25,7 +25,7 @@ set $spotify  spotify
 set $yazi  yazi
 
 # Your preferred terminal emulator
-set $term foot
+set $term kitty --single-instance
 
 include /etc/sway/config-vars.d/*
 
@@ -48,13 +48,18 @@ output eDP-1 resolution 1920x1080@60Hz position 0,0
 #
 # Example configuration:
 #
+exec swaybg -i ~/Pictures/wallpapers/hollow-knight.png
+
 exec swayidle -w \
          timeout 300 'swaylock -f' \
          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
          before-sleep 'swaylock -f'
 
 exec mako
-#
+
+exec kitty --class "start_kitty" -1
+
+
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
@@ -269,10 +274,9 @@ client.focused #505050 #505050 #c1c1c1  #756482 #505050
 
 client.unfocused #000000 #000000 #000000  #000000 #000000
 
-exec swaybg -i ~/Pictures/wallpapers/hollow-knight.png
 
-exec mako
 
+for_window [app_id="start_kitty"] move scratchpad
 
 
 include /etc/sway/config.d/*
