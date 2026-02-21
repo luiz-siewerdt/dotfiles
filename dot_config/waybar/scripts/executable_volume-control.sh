@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 # Define functions
+
 print_error() {
   cat <<"EOF"
 Usage: ./volumecontrol.sh -[device] <actions>
@@ -81,6 +82,19 @@ select_output() {
   fi
 }
 
+
+toggle_widget() {
+  open_widgets=$(eww active-windows)
+
+
+
+  if echo "$open_widgets" | grep -q "audio_ctl"; then
+    eww -c "$eww_config_path" close audio_ctl
+  else
+    eww -c "$eww_config_path" open audio_ctl
+  fi
+}
+
 # Evaluate device option
 while getopts iops: DeviceOpt; do
   case "${DeviceOpt}" in
@@ -117,7 +131,6 @@ case "${1}" in
 i) action_volume i ;;
 d) action_volume d ;;
 m) pactl set-sink-mute @DEFAULT_SINK@ toggle && notify_mute && exit 0 ;;
+t) toggle_widget ;;
 *) print_error ;;
 esac
-
-send_notification
