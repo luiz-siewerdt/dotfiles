@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+workspaces() {
+
+focused=$(hyprctl activeworkspace -j | jq -r '.id')
+json=$(hyprctl workspaces -j)
+
+echo -n "(box :class \"works\" :orientation \"h\" :spacing 5 :space-evenly \"false\""
+
+for i in 1 2 3 4 5 6; do
+    windows=$(echo "$json" | jq -r ".[] | select(.id==$i) | .windows // 0")
+
+    icon=""
+    class="empty"
+
+    if [ "$focused" -eq "$i" ]; then
+        icon=""
+        class="$class focused"
+    fi
+
+    echo -n " (button :onclick \"hyprctl dispatch workspace $i\" :class \"$class\" \"$icon\")"
+done
+
+echo ")"
+}
+
+workspaces
+
+hyprctl subscribeevents | while read -r event; do
+  case "$event" in
+    workspace*|focusedmon*)
+      workspaces
+      ;;
+  esac
+done

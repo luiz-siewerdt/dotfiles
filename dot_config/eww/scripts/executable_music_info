@@ -1,0 +1,115 @@
+#!/usr/bin/env bash
+
+PLAYER="${PLAYER:-playerctl}"
+
+# Verifica se tem player ativo
+has_player() {
+  $PLAYER status &>/dev/null
+}
+
+get_status() {
+  if ! has_player; then
+    echo "奈"
+    return
+  fi
+
+  status=$($PLAYER status)
+  if [ "$status" = "Playing" ]; then
+    echo ""
+  else
+    echo "奈"
+  fi
+}
+
+get_song() {
+  if ! has_player; then
+    echo "Offline"
+    return
+  fi
+
+  title=$($PLAYER metadata title)
+  [ -z "$title" ] && echo "Offline" || echo "$title"
+}
+
+get_artist() {
+  if ! has_player; then
+    echo ""
+    return
+  fi
+
+  artist=$($PLAYER metadata artist)
+  echo "$artist"
+}
+
+get_time() {
+  if ! has_player; then
+    echo "0"
+    return
+  fi
+
+  pos=$($PLAYER position 2>/dev/null)
+  len=$($PLAYER metadata mpris:length 2>/dev/null)
+
+  if [ -z "$pos" ] || [ -z "$len" ]; then
+    echo "0"
+    return
+  fi
+
+  # length vem em microssegundos
+  len_sec=$((len / 1000000))
+  percent=$((pos * 100 / len_sec))
+  echo "$percent"
+}
+
+get_ctime() {
+  if ! has_player; then
+    echo "0:00"
+    return
+  fi
+
+  pos=$($PLAYER position 2>/dev/null)
+  printf "%d:%02d\n" $((pos/60)) $((pos%60))
+}
+
+get_ttime() {
+  if ! has_player; then
+    echo "0:00"
+    return
+  fi
+
+  len=$($PLAYER metadata mpris:length 2>/dev/null)
+  len_sec=$((len / 1000000))
+  printf "%d:%02d\n" $((len_sec/60)) $((len_sec%60))
+}
+
+get_cover() {
+  if ! has_player; then
+    echo "images/music.png"
+    return
+  fi
+
+  url=$($PLAYER metadata mpris:artUrl)
+
+  if [ -z "$url" ]; then
+    echo "images/music.png"
+  else
+    echo "$url"
+  fi
+}
+
+toggle() { $PLAYER play-pause; }
+next() { $PLAYER next; }
+prev() { $PLAYER previous; }
+
+case "$1" in
+  --song) get_song ;;
+  --artist) get_artist ;;
+  --status) get_status ;;
+  --time) get_time ;;
+  --ctime) get_ctime ;;
+  --ttime) get_ttime ;;
+  --cover) get_cover ;;
+  --toggle) toggle ;;
+  --next) next ;;
+  --prev) prev ;;
+esac

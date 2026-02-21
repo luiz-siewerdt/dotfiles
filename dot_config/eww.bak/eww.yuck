@@ -1,0 +1,68 @@
+(defwidget greeter [?text name]
+  (box :orientation "horizontal"
+       :halign "center"
+    text
+    (button :onclick "notify-send 'Hello' 'Hello, ${name}'"
+      "Greet")))
+
+(defwidget labeled-container [name]
+  (box :class "container"
+    name
+    (children)))
+
+(defwidget two-boxes []
+  (box
+    (box :class "first" (children :nth 0))
+    (box :class "second" (children :nth 1))
+  )
+)
+
+(defvar foo "initial value" )
+
+(defvar time-visible false)
+
+(defpoll 
+  time 
+  :interval "1s"
+  :initial "initial-value"
+  :run-while time-visible
+  `date +%H:%M:%S`
+)
+
+(deflisten listen_file :initial "whatever" `tail -F /tmp/file_banana`)
+
+(defvar variabel_containing_yuck "(box (button 'foo') (button 'bar'))")
+
+(defvar my-json "[1, 2, 3]")
+
+(defwindow example [arg1]
+  :monitor 0
+  :geometry (geometry :x "0px"
+                      :y "20px"
+                      :width "100%"
+                      :height { arg1 == "small" ?  "100px" : "100px" }
+                      :anchor "top center")
+  :stacking "fg"
+  ;; :reserve (struts :distance "0px" :side "top")
+  :windowtype "dock"
+  :wm-ignore false
+  ;; (two-boxes 
+  ;;   (label :text foo)
+  ;;   (button :onclick "eww update foo='macaco'" "aaaa")
+  ;; )
+
+  ;; (two-boxes 
+  ;;   (label :text time)
+  ;;   (button :onclick "eww update time-visible=false" "aaaa")
+  ;; )
+  ;; (label :text listen_file)
+
+  ;; (literal :content variabel_containing_yuck)
+  (box
+    (for entry in my-json
+      (button :onclick "notify-send 'click' 'button ${entry}'" entry)
+    )
+  )
+)
+
+
