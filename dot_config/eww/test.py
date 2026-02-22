@@ -1,0 +1,3 @@
+dicionario = {
+    "chave": "valor"
+}

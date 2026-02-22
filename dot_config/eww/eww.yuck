@@ -9,11 +9,15 @@
 (defpoll memory_total_mb :interval "2m" "scripts/mem-ad total")
 (defpoll memory_free_mb :interval "2m" "scripts/mem-ad free")
 (defpoll output_list :interval "1s" "scripts/audio.sh --sinks")
+(defpoll input_list :interval "1s" "scripts/audio.sh --sources")
+(defvar sinks_open false)
+(defvar sources_open false)
 (defvar vol_reveal false)
 (defvar br_reveal false)
 (defvar music_reveal false)
 (defvar wifi_rev false)
 (defvar open_sound false)
+(defvar open_output false)
 (defvar time_rev false)
 (deflisten workspace "scripts/workspace")
 
@@ -227,34 +231,104 @@
 (cal))
 
 
-
 (defwidget audio []
-	(box :class "audio-box" :orientation "v" :space-evenly "false" :vexpand "false" :hexpand "false"
-	(box :halign "v" :space-evenly "false" :hexpand "false" :vexpand "false"
-	(box :class "speaker_icon" :orientation "v")
-	(box :orientation "v" :halign "center" :vexpand "false" :hexpand "false"
-    (label :class "speaker_text" :text "speaker" :valign "center" :halign "left" )
-	(box :class "speaker_bar" :halign "center" :vexpand "false" :hexpand "false"
-	(scale    :value volume_percent
-              :space-evenly "false"
-			  :orientation "h"
-			  :onchange "amixer -D pulse sset Master {}%" 
-              :tooltip "volume on ${volume_percent}%"
-			  :max 100
-			  :min 0))))
-            (label :text "" :class "audio_sep" :halign "center")
-	(box :halign "v" :space-evenly "false" :hexpand "false" :vexpand "false"
-	(box :class "mic_icon" :orientation "v")
-	(box :orientation "v" :halign "center" :vexpand "false" :hexpand "false"
-    (label :class "mic_text" :text "mic" :valign "center" :halign "left" )
-	(box :class "mic_bar" :halign "center" :vexpand "false" :hexpand "false"
-	(scale    :value mic_percent
-              :space-evenly "false"
-			  :orientation "h"
-              :tooltip "mic on ${mic_percent}%"
-			  :onchange "amixer -D pulse sset Capture {}%" 
-			  :max 100
-			  :min 0))))))
+  (box :class "audio-box"
+       :orientation "v"
+       :vexpand "true"
+       :hexpand "false"
+
+    ;; SPEAKER SECTION
+    (box :orientation "v"
+         :space-evenly "false"
+         :vexpand "false"
+         :hexpand "false"
+
+      (box :halign "v"
+           :space-evenly "false"
+           :hexpand "false"
+           :vexpand "false"
+
+        (box :class "speaker_icon"
+             :orientation "v")
+
+        (box :orientation "v"
+             :halign "center"
+             :vexpand "false"
+             :hexpand "false"
+
+          (label :class "speaker_text"
+                 :text "speaker"
+                 :valign "center"
+                 :halign "left")
+
+          (box :class "speaker_bar"
+               :halign "center"
+               :vexpand "false"
+               :hexpand "false"
+
+            (scale :value volume_percent
+                   :space-evenly "false"
+                   :orientation "h"
+                   :onchange "amixer -D pulse sset Master {}%"
+                   :tooltip "volume on ${volume_percent}%"
+                   :max 100
+                   :min 0)))
+
+        (button :class "speaker_toggle"
+                :onclick "eww update sinks_open=${sinks_open ? false : true}"
+                "${sinks_open ? '' : ''}"))
+
+      (revealer :reveal sinks_open
+                :transition "slidedown"
+                :duration "500ms"
+
+        (box :class "test_legal"
+             :orientation "v"
+             :space-evenly "false"
+             :vexpand "true"
+             :hexpand "false"
+
+          (for source in input_list
+            (button :class {source.default ? 'revealer__line__selected' : 'revealer__line'}
+                    :onclick "wpctl set-default '${source.id}'"
+                    "button ${source.name}")))))
+
+    ;; SEPARATOR
+    (label :text ""
+           :class "audio_sep"
+           :halign "center")
+
+    ;; MIC SECTION
+    (box :halign "v"
+         :space-evenly "false"
+         :hexpand "false"
+         :vexpand "false"
+
+      (box :class "mic_icon"
+           :orientation "v")
+
+      (box :orientation "v"
+           :halign "center"
+           :vexpand "false"
+           :hexpand "false"
+
+        (label :class "mic_text"
+               :text "mic"
+               :valign "center"
+               :halign "left")
+
+        (box :class "mic_bar"
+             :halign "center"
+             :vexpand "false"
+             :hexpand "false"
+
+          (scale :value mic_percent
+                 :space-evenly "false"
+                 :orientation "h"
+                 :tooltip "mic on ${mic_percent}%"
+                 :onchange "amixer -D pulse sset Capture {}%"
+                 :max 100
+                 :min 0))))))
 
 (defwindow audio_ctl
   :monitor 0
@@ -309,11 +383,19 @@
 ;; TEST 
 (defwidget revealer_widget []
   (box :class "test_legal" :orientation "v" :space-evenly "false" :vexpand "false" :hexpand "false"
-    (button :class "test_legal_button" :onclick "eww update open_sound=${open_sound ? false : true}" "macacooooooooooooo     ${open_sound ? '' : ''}")
+    (button :class "test_legal_button" :onclick "eww update open_sound=${open_sound ? false : true}" "inputs    ${open_sound ? '' : ''}")
     (revealer :reveal open_sound :transition "slidedown" :duration "500ms"
       (box :class "test_legal" :orientation "v" :space-evenly "false" :vexpand "true" :hexpand "false"
         (for sink in output_list
-          (button :onclick "notify-send '${sink.name}'" "button ${sink.name}")
+          (button :class {sink.default ? 'revealer__line__selected' : 'revealer__line'} :onclick "wpctl set-default '${sink.id}'" "button ${sink.name}")
+        )
+      )
+    )
+    (button :class "test_legal_button" :onclick "eww update open_output=${open_output ? false : true}" "outputs     ${open_sound ? '' : ''}")
+    (revealer :reveal open_output :transition "slidedown" :duration "500ms"
+      (box :class "test_legal" :orientation "v" :space-evenly "false" :vexpand "true" :hexpand "false"
+        (for source in input_list
+          (button :class {source.default ? 'revealer__line__selected' : 'revealer__line'} :onclick "wpctl set-default '${source.id}'" "button ${source.name}")
         )
       )
     )

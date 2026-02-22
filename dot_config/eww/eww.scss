@@ -397,9 +397,9 @@ calendar:indeterminate {
   background-size: cover;
   background-image: url('images/speaker.png');
   background-position: center;
-  min-height: 70px;
+  min-height: 20px;
   min-width: 75px;
-  margin: 10px 20px 5px 20px;
+  margin: 30px 20px 30px 20px;
   border-radius: 12px;
 }
 
@@ -408,6 +408,12 @@ calendar:indeterminate {
   font-size: 26px;
   font-weight: bold;
   margin: 20px 0px 0px 0px;
+}
+
+.speaker_toggle {
+  font-size: 48px;
+  color: #a1bdce;
+  margin: 10px 30px 0px 30px;
 }
 
 .speaker_bar scale trough highlight {
@@ -433,9 +439,9 @@ calendar:indeterminate {
   background-size: cover;
   background-image: url('images/mic.png');
   background-position: center;
-  min-height: 70px;
+  min-height: 10px;
   min-width: 75px;
-  margin: 5px 20px 20px 20px;
+  margin: 40px 20px 40px 20px;
   border-radius: 12px;
 }
 
@@ -472,6 +478,15 @@ calendar:indeterminate {
 .test_legal {
   background-color: #393332;
 }
+
+.revealer__line {
+  background-color: #555555;
+}
+
+.revealer__line .selected {
+  background-color: #222222;
+}
+
 
 /* .taaa { */
 /*   width: 4px; */
