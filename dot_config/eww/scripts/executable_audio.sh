@@ -1,9 +1,18 @@
 #!/bin/bash
 
-
+no_match_sink_names=("Radeon" "Navi")
 
 list_sinks() {
+  grep_regex=""
+
+  for name in "${no_match_sink_names[@]}"; do
+    grep_regex+="${name}|"
+  done
+
+  grep_regex="${grep_regex%|}"
+
   wpctl status |
+  grep -vE "(${grep_regex})" |
   awk '
   /Sinks:/ {flag=1; next}
   /Sources:/ {flag=0}
@@ -63,8 +72,22 @@ list_sources() {
 }
 
 
+set_default() {
+  wpctl set-default "$1";
+
+  pactl list short sink-inputs | awk '{print $1}' | while read -r ID; do
+    pactl move-sink-input "$ID" @DEFAULT_SINK@
+  done
+}
+
+
+option="$1"
+param="$2"
+
+
 case "$1" in
   --sinks) list_sinks ;;
   --sources) list_sources ;;
+  --set-default) set_default "$param" ;;
   *) echo "ec" ;;
 esac

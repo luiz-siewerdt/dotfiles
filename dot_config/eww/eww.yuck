@@ -2,16 +2,10 @@
 (defpoll clock_time :interval "5m" "date +\%I")
 (defpoll clock_minute :interval "5s" "date +\%M")
 (defpoll clock_date :interval "10h" "date '+%d/%m'")
-(defpoll volume_percent :interval "3s" "amixer -D pulse sget Master | grep 'Left:' | awk -F'[][]' '{ print $2 }' | tr -d '%'")
-(defpoll mic_percent :interval "3s" "amixer -D pulse sget Capture | grep 'Left:' | awk -F'[][]' '{ print $2 }' | tr -d '%'")
 (defpoll memory :interval "15s" "scripts/memory")
 (defpoll memory_used_mb :interval "2m" "scripts/mem-ad used")
 (defpoll memory_total_mb :interval "2m" "scripts/mem-ad total")
 (defpoll memory_free_mb :interval "2m" "scripts/mem-ad free")
-(defpoll output_list :interval "1s" "scripts/audio.sh --sinks")
-(defpoll input_list :interval "1s" "scripts/audio.sh --sources")
-(defvar sinks_open false)
-(defvar sources_open false)
 (defvar vol_reveal false)
 (defvar br_reveal false)
 (defvar music_reveal false)
@@ -21,6 +15,9 @@
 (defvar time_rev false)
 (deflisten workspace "scripts/workspace")
 
+(include "./widgets/audio/main.yuck")
+(include "./widgets/music/main.yuck")
+
 (defvar eww "/usr/bin/eww -c $HOME/.config/eww")
 
 
@@ -28,12 +25,6 @@
 (defpoll ESSID_WLAN :interval "1m" "~/.config/eww/scripts/wifi --ESSID")
 (defpoll WLAN_ICON :interval "1m" "~/.config/eww/scripts/wifi --ICON")
 
-
-(defpoll song :interval "2s"  "~/.config/eww/scripts/music_info --song")
-(defpoll song_artist :interval "2s"  "~/.config/eww/scripts/music_info --artist")
-(defpoll current_status :interval "1s"  "~/.config/eww/scripts/music_info --time")
-(defpoll song_status :interval "2s"  "~/.config/eww/scripts/music_info --status")
-(defpoll cover_art :interval "2s"  "~/.config/eww/scripts/music_info --cover")
 
 (defpoll calendar_day :interval "20h" "date '+%d'")
 (defpoll calendar_year :interval "20h" "date '+%Y'")
@@ -44,13 +35,20 @@
   (eventbox :onhover "${eww} update wifi_rev=true"
 			  :onhoverlost "${eww} update wifi_rev=false"
 		(box :vexpand "false" :hexpand "false" :space-evenly "false"
-				(button :class "module-wif" :onclick "networkmanager_dmenu" :limit-width 12 :style "color: ${COL_WLAN};" WLAN_ICON)
+				(button :class "module-wif" :onclick "networkmanager_dmenu" :style "color: ${COL_WLAN};" WLAN_ICON)
 	(revealer :transition "slideright"
 			  :reveal wifi_rev
 			  :duration "350ms"
 	(label    :class "module_essid"
 			  :text ESSID_WLAN
 			  )))))
+
+
+(defwindow test_window
+  :monitor 0
+  :stacking "fg"
+  :geometry (geometry :x "200px" :y "200" :width "200" :height "200" :anchor "top left")
+  (wifi))
 
 
 (defwidget workspaces []
@@ -116,21 +114,6 @@
 
 
 
-	;;  Music 
-(defwidget music [] 
-  (eventbox :onhover "${eww} update music_reveal=true"
-			  :onhoverlost "${eww} update music_reveal=false"
-		(box :class "module-2" :orientation "h" :space-evenly "false" :vexpand "false" :hexpand "false" 
-			(box :class "song_cover_art" :vexpand "false" :hexpand "false" :style "background-image: url('${cover_art}');")
-			(button :class "song" :wrap "true" :onclick "~/.config/eww/scripts/pop music" song)
-	    (revealer :transition "slideright"
-			      :reveal music_reveal
-			      :duration "350ms"
-          (box :vexpand "false" :hexpand "false" :oreintation "h" 
-                    (button :class "song_btn_prev" :onclick "~/.config/eww/scripts/music_info --prev" "")
-					(button :class "song_btn_play" :onclick "~/.config/eww/scripts/music_info --toggle" song_status)
-					(button :class "song_btn_next" :onclick "~/.config/eww/scripts/music_info --next" ""))))))
-
 
 
 (defwidget left []
@@ -160,7 +143,7 @@
 		 :space-evenly false  
          :halign "center"
 		 :class "center_modules"
-(music)))
+(label :text "lbela")))
 
 (defwidget bar_1 []
   (box :class "bar_class"
@@ -229,115 +212,6 @@
 						:width "270px" 
 						:height "60px")
 (cal))
-
-
-(defwidget audio []
-  (box :class "audio-box"
-       :orientation "v"
-       :vexpand "true"
-       :hexpand "false"
-
-    ;; SPEAKER SECTION
-    (box :orientation "v"
-         :space-evenly "false"
-         :vexpand "false"
-         :hexpand "false"
-
-      (box :halign "v"
-           :space-evenly "false"
-           :hexpand "false"
-           :vexpand "false"
-
-        (box :class "speaker_icon"
-             :orientation "v")
-
-        (box :orientation "v"
-             :halign "center"
-             :vexpand "false"
-             :hexpand "false"
-
-          (label :class "speaker_text"
-                 :text "speaker"
-                 :valign "center"
-                 :halign "left")
-
-          (box :class "speaker_bar"
-               :halign "center"
-               :vexpand "false"
-               :hexpand "false"
-
-            (scale :value volume_percent
-                   :space-evenly "false"
-                   :orientation "h"
-                   :onchange "amixer -D pulse sset Master {}%"
-                   :tooltip "volume on ${volume_percent}%"
-                   :max 100
-                   :min 0)))
-
-        (button :class "speaker_toggle"
-                :onclick "eww update sinks_open=${sinks_open ? false : true}"
-                "${sinks_open ? '' : ''}"))
-
-      (revealer :reveal sinks_open
-                :transition "slidedown"
-                :duration "500ms"
-
-        (box :class "test_legal"
-             :orientation "v"
-             :space-evenly "false"
-             :vexpand "true"
-             :hexpand "false"
-
-          (for source in input_list
-            (button :class {source.default ? 'revealer__line__selected' : 'revealer__line'}
-                    :onclick "wpctl set-default '${source.id}'"
-                    "button ${source.name}")))))
-
-    ;; SEPARATOR
-    (label :text ""
-           :class "audio_sep"
-           :halign "center")
-
-    ;; MIC SECTION
-    (box :halign "v"
-         :space-evenly "false"
-         :hexpand "false"
-         :vexpand "false"
-
-      (box :class "mic_icon"
-           :orientation "v")
-
-      (box :orientation "v"
-           :halign "center"
-           :vexpand "false"
-           :hexpand "false"
-
-        (label :class "mic_text"
-               :text "mic"
-               :valign "center"
-               :halign "left")
-
-        (box :class "mic_bar"
-             :halign "center"
-             :vexpand "false"
-             :hexpand "false"
-
-          (scale :value mic_percent
-                 :space-evenly "false"
-                 :orientation "h"
-                 :tooltip "mic on ${mic_percent}%"
-                 :onchange "amixer -D pulse sset Capture {}%"
-                 :max 100
-                 :min 0))))))
-
-(defwindow audio_ctl
-  :monitor 0
-	:geometry (geometry :x "44px" 
-						:y "10px" 
-                        :anchor "top right"
-						:width "280px" 
-						:height "60px")
-(audio))
 
 
 (defwindow system

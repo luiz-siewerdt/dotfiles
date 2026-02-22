@@ -1,0 +1,149 @@
+;; Variables
+
+;; -- PERCENTS -- ;;
+(defpoll volume_percent :interval "100ms" "amixer -D pulse sget Master | grep 'Left:' | awk -F'[][]' '{ print $2 }' | tr -d '%'")
+(defpoll mic_percent :interval "100ms" "amixer -D pulse sget Capture | grep 'Left:' | awk -F'[][]' '{ print $2 }' | tr -d '%'")
+
+;; -- LIST -- ;;
+(defpoll output_list :interval "100ms" "scripts/audio.sh --sinks")
+(defpoll input_list :interval "100ms" "scripts/audio.sh --sources")
+(defvar sinks_open false)
+(defvar sources_open false)
+
+;; -- WIDGET -- ;;
+
+(defwidget audio []
+    ;; SPEAKER SECTION
+    (box :orientation "v"
+         :space-evenly "false"
+         :vexpand "false"
+         :hexpand "false"
+         :class "audio-box"
+
+      (box :halign "v"
+           :space-evenly "false"
+           :hexpand "false"
+           :vexpand "false"
+
+
+        (box :class "speaker_icon"
+             :orientation "v"
+          (label :class "speaker_name"
+              :text ""))
+
+        (box :orientation "v"
+             :halign "center"
+             :vexpand "false"
+             :hexpand "false"
+
+          (label :class "speaker_text"
+                 :text "speaker"
+                 :valign "center"
+                 :halign "left")
+
+          (box :class "speaker_bar"
+               :halign "center"
+               :vexpand "false"
+               :hexpand "false"
+
+            (scale :value volume_percent
+                   :space-evenly "false"
+                   :orientation "h"
+                   :onchange "amixer -D pulse sset Master {}%"
+                   :tooltip "volume on ${volume_percent}%"
+                   :max 100
+                   :min 0)))
+
+        (button :class "speaker_toggle"
+                :onclick "eww update sinks_open=${sinks_open ? false : true}"
+                "${sinks_open ? '' : ''}"))
+
+      (revealer :reveal sinks_open
+                :transition "slidedown"
+                :duration "500ms"
+
+        (box :class "audio_label_list"
+             :orientation "v"
+             :space-evenly "false"
+             :vexpand "true"
+             :hexpand "false"
+
+          (for source in output_list
+            (button :class {source.default ? 'audio_label_line_selected' : 'audio_label_line'}
+                    :onclick "scripts/audio.sh --set-default '${source.id}'"
+                    "${source.id} ${source.default ? '* ' : ''}${source.name}"))))
+
+    ;; SEPARATOR
+    (label :text ""
+           :class "audio_sep"
+           :halign "center")
+
+    ;; MIC SECTION
+    (box :halign "v"
+         :space-evenly "false"
+         :hexpand "false"
+         :vexpand "false"
+
+        (box :class "mic_icon"
+             :orientation "v"
+          (label :class "mic_icon_text"
+              :text "󰍬"))
+
+      (box :orientation "v"
+           :halign "center"
+           :vexpand "false"
+           :hexpand "false"
+
+        (label :class "mic_text"
+               :text "mic"
+               :valign "center"
+               :halign "left")
+
+        (box :class "mic_bar"
+             :halign "center"
+             :vexpand "false"
+             :hexpand "false"
+
+          (scale :value mic_percent
+                 :space-evenly "false"
+                 :orientation "h"
+                 :tooltip "mic on ${mic_percent}%"
+                 :onchange "amixer -D pulse sset Capture {}%"
+                 :max 100
+                 :min 0)))
+      (button :class "speaker_toggle"
+              :onclick "eww update sources_open=${sources_open ? false : true}"
+              "${sources_open ? '' : ''}")
+
+    )
+
+    (revealer :reveal sources_open
+                :transition "slidedown"
+                :duration "500ms"
+
+        (box :class "audio_label_list"
+             :orientation "v"
+             :space-evenly "false"
+             :vexpand "true"
+             :hexpand "false"
+
+          (for source in input_list
+            (button :class {source.default ? 'audio_label_line_selected' : 'audio_label_line'}
+                    :onclick "wpctl set-default '${source.id}'"
+                    "${source.id} ${source.default ? '* ' : ''}${source.name}"))))
+
+
+  )
+)
+
+
+;; -- WINDOW -- ;;
+
+(defwindow audio_ctl
+  :monitor 0
+	:geometry (geometry :x "44px" 
+						:y "10px" 
+                        :anchor "top right"
+						:width "280px" 
+						:height "60px")
+(audio))
