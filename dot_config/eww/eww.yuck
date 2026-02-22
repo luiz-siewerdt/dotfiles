@@ -17,6 +17,7 @@
 
 (include "./widgets/audio/main.yuck")
 (include "./widgets/music/main.yuck")
+(include "./widgets/calendar/main.yuck")
 
 (defvar eww "/usr/bin/eww -c $HOME/.config/eww")
 
@@ -26,8 +27,6 @@
 (defpoll WLAN_ICON :interval "1m" "~/.config/eww/scripts/wifi --ICON")
 
 
-(defpoll calendar_day :interval "20h" "date '+%d'")
-(defpoll calendar_year :interval "20h" "date '+%Y'")
 
 ;; widgets
 
@@ -197,61 +196,16 @@
                 :show_truncated false
                 :wrap false)))))
 
-(defwidget cal []
-	(box :class "cal" :orientation "v"
-	(box :class "cal-in"
-	(calendar :class "cal" 
-			  :day calendar_day 
-			  :year calendar_year))))
-
-(defwindow calendar
-  :monitor 0
-	:geometry (geometry :x "-20px" 
-						:y "7%" 
-                        :anchor "top right"
-						:width "270px" 
-						:height "60px")
-(cal))
 
 
 (defwindow system
   :monitor 0
 	:geometry (geometry :x "-20px" 
 						:y "7%" 
-                        :anchor "top right"
+                        :anchor "top center"
 						:width "290px" 
 						:height "120px")
 (system))
-
-
-
-;;  Music
-(defwidget music_pop []
-		(box :class "music_pop" :orientation "h" :space-evenly "false" :vexpand "false" :hexpand "false"
-			(box :class "music_cover_art" :vexpand "false" :hexpand "false" :style "background-image: url('${cover_art}');")
-			(box :orientation "v" :spacing 20 :space-evenly "false" :vexpand "false" :hexpand "false"
-				(label :halign "center" :class "music" :wrap "true" :limit-width 13 :text "macaco")
-				(label :halign "center" :class "music" :wrap "true" :limit-width 13 :text song)
-				(label :halign "center" :class "music_artist" :wrap "true" :limit-width 15 :text song_artist)
-				(box :orientation "h" :spacing 15 :halign "center" :space-evenly "false" :vexpand "false" :hexpand "false"
-					(button :class "music_btn_prev" :onclick "~/.config/eww/scripts/music_info --prev" "")
-					(button :class "music_btn_play" :onclick "~/.config/eww/scripts/music_info --toggle" song_status)
-					(button :class "music_btn_next" :onclick "~/.config/eww/scripts/music_info --next" ""))
-				(box :class "music_bar" :halign "center" :vexpand "false" :hexpand "false" :space-evenly "false"
-					(scale :onscroll "mpc -q seek {}" :min 0 :active "true" :max 100 :value current_status)))))
-
-
-;;  music
-		(defwindow music_win :stacking "fg" :focusable false :screen 1
-          :monitor 0
-			    :geometry (geometry :x "0" :y "7%" :width 428 :height 104 :anchor "top center")
-  (eventbox
-    :onkey "case '{}' in
-      Escape) eww close music_win ;;
-    esac"
-    (music_pop)))
-
-
 
 
 ;; TEST 

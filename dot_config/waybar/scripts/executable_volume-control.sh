@@ -86,12 +86,10 @@ select_output() {
 toggle_widget() {
   open_widgets=$(eww active-windows)
 
-
-
   if echo "$open_widgets" | grep -q "audio_ctl"; then
-    eww -c "$eww_config_path" close audio_ctl
+    eww close audio_ctl
   else
-    eww -c "$eww_config_path" open audio_ctl
+    eww open audio_ctl
   fi
 }
 

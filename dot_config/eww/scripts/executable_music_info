@@ -68,7 +68,7 @@ get_ctime() {
   fi
 
   pos=$($PLAYER position 2>/dev/null)
-  printf "%d:%02d\n" $((pos/60)) $((pos%60))
+  printf "%d:%02d\n" $((pos / 60)) $((pos % 60))
 }
 
 get_ttime() {
@@ -97,6 +97,13 @@ get_cover() {
   fi
 }
 
+
+get_volume() {
+  volume=$(playerctl volume)
+  volume_int=$(awk "BEGIN {printf \"%d\", $volume * 100}")
+  printf "%d\n" "$volume_int"
+}
+
 toggle() { $PLAYER play-pause; }
 next() { $PLAYER next; }
 prev() { $PLAYER previous; }
@@ -112,4 +119,5 @@ case "$1" in
   --toggle) toggle ;;
   --next) next ;;
   --prev) prev ;;
+  --volume) get_volume ;;
 esac
