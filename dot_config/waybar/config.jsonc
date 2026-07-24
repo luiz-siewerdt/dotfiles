@@ -161,12 +161,9 @@
         "today": "<span color='#f38ba8'><b>{}</b></span>"
       }
     },
-    "actions": {
-      "on-click": "mode",
-      "on-click-right": "mode"
-    },
     "min-length": 8,
-    "max-length": 8
+    "max-length": 8,
+    "on-click": "~/.config/waybar/scripts/toggle_widget.sh calendar"
   },
   "custom/wifi": {
     "exec": "~/.config/waybar/scripts/wifi-status.sh",
@@ -217,7 +214,8 @@
     "tooltip-format": "Playing: {title} - {artist}",
     "tooltip-format-paused": "Paused: {title} - {artist}",
     "min-length": 5,
-    "max-length": 35
+    "max-length": 35,
+    "on-click": "~/.config/waybar/scripts/toggle_widget.sh music_win"
   },
   "pulseaudio": {
     "format": "{icon} {volume}%",
@@ -232,7 +230,8 @@
       "headset": "󰋋"
     },
     "tooltip-format": "Device: {desc}",
-    "on-click": "~/.config/waybar/scripts/volume-control.sh -o m",
+    "on-click": "~/.config/waybar/scripts/toggle_widget.sh audio_ctl",
+    "on-click-right": "~/.config/waybar/scripts/volume-control.sh -o m",
     "on-scroll-up": "~/.config/waybar/scripts/volume-control.sh -o i",
     "on-scroll-down": "~/.config/waybar/scripts/volume-control.sh -o d",
     "min-length": 6,
