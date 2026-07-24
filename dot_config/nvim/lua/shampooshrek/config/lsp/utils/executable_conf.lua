@@ -28,7 +28,7 @@ M.setup = function(_, opts)
     end
     vim.keymap.set("n", "gD", vim.lsp.buf.declaration, with_table("goto declaration"))
     vim.keymap.set("n", "gd", vim.lsp.buf.definition, with_table("goto definition"))
-    vim.keymap.set("n", "K", vim.lsp.buf.hover, with_table("hover"))
+    -- vim.keymap.set("n", "K", vim.lsp.buf.hover, with_table("hover"))
     vim.keymap.set("n", "gr", vim.lsp.buf.references, with_table("references"))
 
     vim.keymap.set(

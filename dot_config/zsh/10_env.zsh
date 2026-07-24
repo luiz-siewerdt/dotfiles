@@ -14,7 +14,6 @@ export VISUAL=nvim
 
 export QT_QPA_PLATFORM=wayland
 export QT_QPA_PLATFORMTHEME=qt5ct
-export QT_WAYLAND_SHELL_INTEGRATION=layzer-shell
 
 export BROWSER="firefox"
 

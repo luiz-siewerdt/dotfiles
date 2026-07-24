@@ -1,3 +1,6 @@
+local doc_hide = require("shampooshrek.functions.fold")
+
+
 vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = "*",
   callback = function(args)
@@ -14,6 +17,7 @@ vim.api.nvim_create_user_command("OilToggle", function()
     oil.open_float()
   end
 end, { nargs = 0 })
+
 
 local function augroup(name)
   return vim.api.nvim_create_augroup("lazyvim_" .. name, { clear = true })
@@ -159,6 +163,23 @@ vim.api.nvim_create_autocmd({ "BufReadPre", "BufNewFile", "SessionLoadPost" }, {
       vim.api.nvim_exec_autocmds("User", { pattern = 'StartLsp' })
     end
   end
+})
+
+vim.api.nvim_create_user_command("PyDocHide", doc_hide.PyDocHide, {})
+vim.api.nvim_create_user_command("JsDocHide", doc_hide.JsDocHide, {})
+
+vim.api.nvim_create_autocmd({ "BufWritePre", "BufEnter" }, {
+  pattern = "*.py",
+  callback = function()
+    doc_hide.PyDocHide()
+  end,
+})
+
+vim.api.nvim_create_autocmd({ "BufWritePre", "BufEnter" }, {
+  pattern = { "*.js", "*.ts", "*.jsx", "*.tsx" },
+  callback = function()
+    doc_hide.JsDocHide()
+  end,
 })
 
 vim.diagnostic.config({
