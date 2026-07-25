@@ -1,0 +1,79 @@
+[pyprland]
+plugins = ["scratchpads", "workspaces_follow_focus"]
+
+[scratchpads.gptbing]
+command = "flatpak run com.microsoft.Edge --app='https://www.bing.com/search?form=NTPCHB&q=Bing+AI&showconv=1'"
+animation = "fromTop"
+multi = "false"
+# match_by = "title"
+match_by = "class"
+# title = "Copilot with GPT-4"
+# title = "Microsoft Copilot in Bing"
+class = "Microsoft-edge"
+margin = 70
+position = "20% 50px"
+size = "60% 60%"
+lazy = true
+
+[scratchpads.up-term]
+# command = "wezterm start --always-new-process --class dropterm-top"
+# command = "kitty --class dropterm-top"
+command = "alacritty --class dropterm-top"
+animation = "fromTop"
+unfocus = "hide"
+position = "25% 45px"
+margin = 45
+size = "50% 50%"
+lazy = true
+
+[scratchpads.drop-term]
+# command = "wezterm start --always-new-process --class dropterm"
+command = "alacritty --class dropterm"
+animation = "fromBottom"
+unfocus = "hide"
+position = "25% 48%"
+size = "50% 50%"
+lazy = true
+
+# [scratchpads.telegramchrome]
+# command = "chromium class=whatsapp --app=https://web.telegram.org/a/"
+# position = "25% 20%"
+# size = "50% 60%"
+# lazy = true
+# excludes = ["telegram"]
+
+[scratchpads.whatsapp]
+command = "chromium class=whatsapp --app=https://web.whatsapp.com/"
+position = "25% 20%"
+size = "50% 60%"
+lazy = true
+# excludes = ["telegram"]
+
+[scratchpads.telegram]
+command = "telegram-desktop"
+# position= "25% 20%"
+# animation = "fromBottom"
+position = "25% 20%"
+size = "50% 60%"
+match_by = "initialClass"
+initialClass = "org.telegram.desktop"
+multi = "false"
+# class_match=true
+lazy = true
+# excludes = ["whatsapp"]
+
+[scratchpads.volume]
+command = "pavucontrol"
+animation = "fromRight"
+lazy = true
+size = "15% 25%"
+
+# [scratchpads.discord]
+# # command = "discord"
+# command = "chromium class=whatsapp --app=https://discord.com/app"
+# size = "50% 60%"
+# animation = ""
+# match_by = "class"
+# class = "discord"
+# # class_match = true
+# lazy = true
