@@ -1,6 +1,9 @@
 local M = {}
 
 
+---@param dap
+---@param cb
+---@param config
 M.setup_adapters = function(dap)
   dap.adapters.python = function(cb, config)
     if config.request == 'attach' then

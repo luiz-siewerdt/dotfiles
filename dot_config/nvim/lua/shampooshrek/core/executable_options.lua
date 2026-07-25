@@ -23,6 +23,7 @@ opt.conceallevel = 2                                    -- Hide * markup for bol
 opt.confirm = true                                      -- Confirm to save changes before exiting modified buffer
 opt.cursorline = false                                  -- Enable highlighting of the current line
 opt.expandtab = true                                    -- Use spaces instead of tabs
+
 opt.fillchars = {
   foldopen = "",
   foldclose = "",
@@ -31,7 +32,16 @@ opt.fillchars = {
   diff = "╱",
   eob = " ",
 }
+
+vim.opt.foldopen:remove("hor")
+vim.o.foldmethod = "expr"
+vim.o.foldexpr = "nvim_treesitter#foldexpr()"
 opt.foldlevel = 99
+vim.o.foldlevel = 99
+vim.o.foldlevelstart = 99
+vim.o.foldcolumn = "1"
+vim.o.foldenable = true
+
 opt.formatexpr = "v:lua.require'lazyvim.util'.format.formatexpr()"
 opt.formatoptions = "jcroqlnt" -- tcqj
 opt.grepformat = "%f:%l:%c:%m"
@@ -80,6 +90,5 @@ vim.cmd([[let &t_Ce = "\e[4:0m"]])
 vim.o.guifont = "JetBrainsMono Nerd Font:h8"
 
 vim.o.shortmess = vim.o.shortmess .. "I"
-
 
 vim.g.nightflyTransparent = true
